@@ -6,6 +6,7 @@ MyCalendarAddDialog::MyCalendarAddDialog(QWidget *parent) :
     ui(new Ui::MyCalendarAddDialog)
 {
     ui->setupUi(this);
+
 }
 
 MyCalendarAddDialog::~MyCalendarAddDialog()

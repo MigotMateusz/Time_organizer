@@ -6,14 +6,80 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>544</width>
+    <width>500</width>
     <height>700</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>MyCalendar Dialog</string>
   </property>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>30</y>
+     <width>440</width>
+     <height>521</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Add_Button">
+   <property name="geometry">
+    <rect>
+     <x>30</x>
+     <y>560</y>
+     <width>220</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Add new MyCalendar</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Cancel_Button">
+   <property name="geometry">
+    <rect>
+     <x>29</x>
+     <y>624</y>
+     <width>441</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Cancel</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Delete_Button">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>560</y>
+     <width>220</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Delete selected MyCalendar</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>Cancel_Button</sender>
+   <signal>released()</signal>
+   <receiver>MyCalendarDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>249</x>
+     <y>649</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>249</x>
+     <y>349</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
