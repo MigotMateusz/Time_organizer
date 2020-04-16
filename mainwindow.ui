@@ -546,13 +546,13 @@ background-color: rgb(206, 206, 206);</string>
     <addaction name="actionLoad_Tasks_From_File"/>
     <addaction name="actionNew_calendar"/>
    </widget>
-   <widget class="QMenu" name="menuEdit">
+   <widget class="QMenu" name="menuCalendars">
     <property name="title">
      <string>Calendars</string>
     </property>
     <addaction name="actionAdd_calendar"/>
     <addaction name="actionDelete_calendar"/>
-    <addaction name="actionAdd_task"/>
+    <addaction name="actionSee_calendars"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -570,7 +570,7 @@ background-color: rgb(206, 206, 206);</string>
    </widget>
    <addaction name="menuFIle"/>
    <addaction name="menuTools"/>
-   <addaction name="menuEdit"/>
+   <addaction name="menuCalendars"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar">
@@ -623,7 +623,7 @@ background-color: rgb(206, 206, 206);</string>
     <string>See Agenda</string>
    </property>
   </action>
-  <action name="actionAdd_task">
+  <action name="actionSee_calendars">
    <property name="text">
     <string>See Calendars</string>
    </property>

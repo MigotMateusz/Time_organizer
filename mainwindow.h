@@ -21,6 +21,9 @@ private slots:
     void nextmonth_cal();
     void prevmonth_cal();
     void selected_day_label();
+    void open_MyCalendarDialog();
+    void open_MyCalendarAddDialog();
+    void open_MyCalendarDeleteDialog();
 private:
     Ui::MainWindow *ui;
 };
