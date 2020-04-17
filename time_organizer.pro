@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     event.cpp \
+    functions.cpp \
     main.cpp \
     mainwindow.cpp \
     mycalendar.cpp \

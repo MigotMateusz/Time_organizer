@@ -4,6 +4,7 @@
 #include <QDialog>
 #include "mycalendar.h"
 #include <vector>
+#include <QMessageBox>
 #include <QListWidget>
 
 namespace Ui {
@@ -25,7 +26,9 @@ public slots:
 
 private:
     Ui::MyCalendarDialog *ui;
+public:
     std::vector<MyCalendar> calendars;
+    void loadMyCalendars();
 };
 
 #endif // MYCALENDARDIALOG_H

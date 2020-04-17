@@ -17,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->calendar, SIGNAL(selectionChanged()),this, SLOT(selected_day_label()));
     connect(ui->actionSee_calendars, SIGNAL(triggered()) ,this, SLOT(open_MyCalendarDialog()));
     connect(ui->actionDelete_calendar, SIGNAL(triggered()), this, SLOT(open_MyCalendarDeleteDialog()));
-    connect(ui->actionAdd_calendar, SIGNAL(triggered()), this, SLOT(open_MyCalendarAddDialog()));
+    //connect(ui->actionAdd_calendar, SIGNAL(triggered()), this, SLOT(open_MyCalendarAddDialog()));
 }
 
 MainWindow::~MainWindow()
@@ -57,11 +57,11 @@ void MainWindow::open_MyCalendarDialog(){
     myCalendarDialog.exec();
 }
 
-void MainWindow::open_MyCalendarAddDialog(){
-    MyCalendarAddDialog myCalendarAddDialog;
+/*void MainWindow::open_MyCalendarAddDialog(){
+    MyCalendarAddDialog myCalendarAddDialog();
     myCalendarAddDialog.setModal(true);
     myCalendarAddDialog.exec();
-}
+}*/
 
 void MainWindow::open_MyCalendarDeleteDialog(){
     MyCalendarDeleteDialog myCalendarDeleteDialog;
