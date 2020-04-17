@@ -5,10 +5,10 @@
 
 class Task
 {
+private:
     std::string name;
     bool deadline;
     QDate date;
-
 
 public:
     Task();

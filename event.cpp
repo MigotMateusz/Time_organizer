@@ -1,7 +1,6 @@
 #include "event.h"
 
-Event::Event()
-{
+Event::Event(){
     this->name_of_the_event = "Event";
     this->description = "This is empty event";
     this->date.currentDate();

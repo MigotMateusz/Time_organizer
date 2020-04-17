@@ -13,18 +13,17 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
-public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+private:
+    Ui::MainWindow *ui;
 
 private slots:
     void nextmonth_cal();
     void prevmonth_cal();
     void selected_day_label();
     void open_MyCalendarDialog();
-    void open_MyCalendarAddDialog();
-    void open_MyCalendarDeleteDialog();
-private:
-    Ui::MainWindow *ui;
+
+public:
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 };
 #endif // MAINWINDOW_H

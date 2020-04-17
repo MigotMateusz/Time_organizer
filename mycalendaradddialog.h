@@ -14,6 +14,12 @@ class MyCalendarAddDialog : public QDialog
 {
     Q_OBJECT
 
+private:
+    Ui::MyCalendarAddDialog *ui;
+    QColor selected_color;
+    QString selected_name;
+    MyCalendarDialog *calendardialog;
+
 public:
     explicit MyCalendarAddDialog(MyCalendarDialog *dialog, QWidget *parent = nullptr);
     ~MyCalendarAddDialog();
@@ -23,11 +29,6 @@ public slots:
     void on_button_cancel_click();
     void on_button_save_click();
 
-private:
-    Ui::MyCalendarAddDialog *ui;
-    QColor selected_color;
-    QString selected_name;
-    MyCalendarDialog *calendardialog;
 };
 
 #endif // MYCALENDARADDDIALOG_H

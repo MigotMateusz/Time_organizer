@@ -1,16 +1,19 @@
 #ifndef EVENT_H
 #define EVENT_H
+
 #include <string>
 #include <QDate>
 #include "mycalendar.h"
+
 class Event
 {
+private:
     std::string name_of_the_event;
     std::string description;
     std::string place; //optional
     QDate date;
     MyCalendar *calendar;
-    //MyCalendar type_of_calendar;
+
 public:
     Event();
     Event(std::string,std::string, QDate, MyCalendar*, std::string="");

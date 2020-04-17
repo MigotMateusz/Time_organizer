@@ -1,5 +1,6 @@
 #ifndef DATAAGGREGATOR_H
 #define DATAAGGREGATOR_H
+
 #include <vector>
 #include <fstream>
 #include "mycalendar.h"
@@ -12,6 +13,7 @@ private:
     std::vector<MyCalendar> calendars;
     std::vector<Event> events;
     std::vector<Task> tasks;
+
 public:
     DataAggregator();
     ~DataAggregator();

@@ -1,9 +1,10 @@
 #include "dataaggregator.h"
-#include <QColor>
+
 
 DataAggregator::DataAggregator(){
     load_MyCalendar_from_database();
 }
+
 void DataAggregator::load_MyCalendar_from_database(){
     std::fstream plik("mycalendars.txt", std::ios::in);
     char pom1;

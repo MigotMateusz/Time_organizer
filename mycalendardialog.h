@@ -15,18 +15,16 @@ class MyCalendarDialog : public QDialog
 {
     Q_OBJECT
 
-public:
-    explicit MyCalendarDialog(QWidget *parent = nullptr);
-    ~MyCalendarDialog();
+private:
+    Ui::MyCalendarDialog *ui;
 
 public slots:
     void open_MyCalendarDeleteDialog();
     void open_MyCalendarAddDialog();
 
-
-private:
-    Ui::MyCalendarDialog *ui;
 public:
+    explicit MyCalendarDialog(QWidget *parent = nullptr);
+    ~MyCalendarDialog();
     std::vector<MyCalendar> calendars;
     void loadMyCalendars();
 };

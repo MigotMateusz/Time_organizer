@@ -12,12 +12,12 @@ class MyCalendarDeleteDialog : public QDialog
 {
     Q_OBJECT
 
+private:
+    Ui::MyCalendarDeleteDialog *ui;
+
 public:
     explicit MyCalendarDeleteDialog(QWidget *parent = nullptr);
     ~MyCalendarDeleteDialog();
-
-private:
-    Ui::MyCalendarDeleteDialog *ui;
 };
 
 #endif // MYCALENDARDELETEDIALOG_H

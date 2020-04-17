@@ -17,10 +17,10 @@ MyCalendarAddDialog::MyCalendarAddDialog(MyCalendarDialog *dialog, QWidget *pare
     connect(ui->save_button, SIGNAL(released()), this, SLOT(on_button_save_click()));
 }
 
-MyCalendarAddDialog::~MyCalendarAddDialog()
-{
+MyCalendarAddDialog::~MyCalendarAddDialog(){
     delete ui;
 }
+
 void MyCalendarAddDialog::on_button_color_click(){
     QColor color = QColorDialog::getColor(QColor(0,0,0));
     QPixmap pixmap(20, 20);
@@ -28,6 +28,7 @@ void MyCalendarAddDialog::on_button_color_click(){
     pixmap.fill(color);
     ui->button_color->setIcon(QIcon(pixmap));
 }
+
 void MyCalendarAddDialog::on_button_cancel_click(){
     this->accept();
 }

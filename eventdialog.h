@@ -14,16 +14,16 @@ class EventDialog : public QDialog
 {
     Q_OBJECT
 
+private:
+    Ui::EventDialog *ui;
+    std::vector<MyCalendar *> calendars;
+    Event *event;
+
 public:
     explicit EventDialog(QWidget *parent = nullptr);
     ~EventDialog();
     void setEvent(Event *event);
     Event *getEvent();
-
-private:
-    Ui::EventDialog *ui;
-    std::vector<MyCalendar *> calendars;
-    Event *event;
 };
 
 #endif // EVENTDIALOG_H

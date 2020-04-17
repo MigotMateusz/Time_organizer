@@ -24,7 +24,6 @@ SOURCES += \
     mainwindow.cpp \
     mycalendar.cpp \
     mycalendaradddialog.cpp \
-    mycalendardeletedialog.cpp \
     mycalendardialog.cpp \
     task.cpp \
     task_group.cpp
@@ -36,7 +35,6 @@ HEADERS += \
     mainwindow.h \
     mycalendar.h \
     mycalendaradddialog.h \
-    mycalendardeletedialog.h \
     mycalendardialog.h \
     task.h \
     task_group.h
@@ -45,7 +43,6 @@ FORMS += \
     eventdialog.ui \
     mainwindow.ui \
     mycalendaradddialog.ui \
-    mycalendardeletedialog.ui \
     mycalendardialog.ui
 
 # Default rules for deployment.
