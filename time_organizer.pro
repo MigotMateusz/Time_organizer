@@ -16,7 +16,9 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    dataaggregator.cpp \
     event.cpp \
+    eventdialog.cpp \
     functions.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -28,7 +30,9 @@ SOURCES += \
     task_group.cpp
 
 HEADERS += \
+    dataaggregator.h \
     event.h \
+    eventdialog.h \
     mainwindow.h \
     mycalendar.h \
     mycalendaradddialog.h \
@@ -38,6 +42,7 @@ HEADERS += \
     task_group.h
 
 FORMS += \
+    eventdialog.ui \
     mainwindow.ui \
     mycalendaradddialog.ui \
     mycalendardeletedialog.ui \

@@ -550,8 +550,6 @@ background-color: rgb(206, 206, 206);</string>
     <property name="title">
      <string>Calendars</string>
     </property>
-    <addaction name="actionAdd_calendar"/>
-    <addaction name="actionDelete_calendar"/>
     <addaction name="actionSee_calendars"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
@@ -562,14 +560,15 @@ background-color: rgb(206, 206, 206);</string>
     <addaction name="actionAbout_me"/>
     <addaction name="actionTutorial"/>
    </widget>
-   <widget class="QMenu" name="menuTools">
+   <widget class="QMenu" name="menuEvents">
     <property name="title">
-     <string>View</string>
+     <string>Events</string>
     </property>
-    <addaction name="actionView"/>
+    <addaction name="actionSee_Agenda"/>
+    <addaction name="actionEvent_Manager"/>
    </widget>
    <addaction name="menuFIle"/>
-   <addaction name="menuTools"/>
+   <addaction name="menuEvents"/>
    <addaction name="menuCalendars"/>
    <addaction name="menuHelp"/>
   </widget>
@@ -618,19 +617,24 @@ background-color: rgb(206, 206, 206);</string>
     <string>Delete calendar</string>
    </property>
   </action>
-  <action name="actionView">
+  <action name="actionSee_Agenda">
    <property name="text">
     <string>See Agenda</string>
    </property>
   </action>
   <action name="actionSee_calendars">
    <property name="text">
-    <string>See Calendars</string>
+    <string>MyCalendar Manager</string>
    </property>
   </action>
   <action name="actionDelete_task">
    <property name="text">
     <string>Delete task</string>
+   </property>
+  </action>
+  <action name="actionEvent_Manager">
+   <property name="text">
+    <string>Event Manager</string>
    </property>
   </action>
  </widget>
