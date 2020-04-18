@@ -15,6 +15,7 @@ MyCalendarAddDialog::MyCalendarAddDialog(MyCalendarDialog *dialog, QWidget *pare
     connect(ui->button_color, SIGNAL(released()), this, SLOT(on_button_color_click()));
     connect(ui->cancel_button, SIGNAL(released()), this, SLOT(on_button_cancel_click()));
     connect(ui->save_button, SIGNAL(released()), this, SLOT(on_button_save_click()));
+    datamanager = dialog->datamanager;
 }
 
 MyCalendarAddDialog::~MyCalendarAddDialog(){

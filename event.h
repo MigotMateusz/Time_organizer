@@ -16,7 +16,7 @@ private:
 
 public:
     Event();
-    Event(std::string,std::string, QDate, MyCalendar*, std::string="");
+    Event(std::string,std::string, QDate, MyCalendar*, std::string);
     Event(const Event&);
 
     ~Event();

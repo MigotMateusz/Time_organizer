@@ -230,6 +230,16 @@ color: black;
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QListWidget" name="dynamic_label">
+    <property name="geometry">
+     <rect>
+      <x>1215</x>
+      <y>81</y>
+      <width>351</width>
+      <height>611</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

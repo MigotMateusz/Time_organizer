@@ -5,6 +5,7 @@
 #include <QColorDialog>
 #include "mycalendar.h"
 #include "mycalendardialog.h"
+#include "dataaggregator.h"
 
 namespace Ui {
 class MyCalendarAddDialog;
@@ -19,7 +20,7 @@ private:
     QColor selected_color;
     QString selected_name;
     MyCalendarDialog *calendardialog;
-
+    DataAggregator *datamanager;
 public:
     explicit MyCalendarAddDialog(MyCalendarDialog *dialog, QWidget *parent = nullptr);
     ~MyCalendarAddDialog();

@@ -9,7 +9,7 @@
 
 class DataAggregator
 {
-private:
+public:
     std::vector<MyCalendar> calendars;
     std::vector<Event> events;
     std::vector<Task> tasks;
