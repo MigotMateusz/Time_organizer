@@ -43,14 +43,15 @@ void MyCalendarDialog::open_MyCalendarDeleteDialog(){
     reply = QMessageBox::question(this, "Confirm", QString("Do you want to delete ") + selected_category + QString("?"),
                                   QMessageBox::Yes|QMessageBox::No);
     if(reply = QMessageBox::Yes){
-        erase_an_element_from_vector(this->calendars, selected_category);
+        erase_an_element_from_vector(this->datamanager->calendars, selected_category);
+        this->datamanager->load_MyCalendar_to_database();
         this->loadMyCalendars();
     }
 
 }
 void MyCalendarDialog::loadMyCalendars(){
     this->ui->listWidget->clear();
-    for(auto i : this->calendars){
+    for(auto i : this->datamanager->calendars){
         QPixmap pixmap(10, 10);
         pixmap.fill(i.getColor());
         this->ui->listWidget->addItem(new QListWidgetItem(QIcon(pixmap),QString(i.getName().c_str())));

@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow()
 {
-    //delete datamanager;
+    delete datamanager;
     delete ui;
 }
 
@@ -72,12 +72,12 @@ void MainWindow::open_EventDialog(){
 }
 void MainWindow::refresh_dynamic_label(){
     ui->dynamic_label->clear();
+
     for(auto pom : this->datamanager->events){
        if(pom.get_date() == ui->calendar->selectedDate()){
             QPixmap pixmap(10, 10);
             pixmap.fill(pom.getcalendar()->getColor());
             ui->dynamic_label->addItem(new QListWidgetItem(QIcon(pixmap), QString(pom.get_name().c_str())));
         }
-
     }
 }

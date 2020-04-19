@@ -13,13 +13,13 @@ public:
     std::vector<MyCalendar> calendars;
     std::vector<Event> events;
     std::vector<Task> tasks;
-
-public:
     DataAggregator();
     ~DataAggregator();
     void load_MyCalendar_from_database();
     void load_Event_from_database();
     void load_Task_from_database();
+    void load_MyCalendar_to_database();
+    void load_Event_to_database();
 };
 
 #endif // DATAAGGREGATOR_H

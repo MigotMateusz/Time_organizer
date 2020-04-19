@@ -8,7 +8,6 @@
 class MyCalendar
 {
 private:
-    unsigned int id;
     std::string name_of_the_calendar;
     QColor color;
 
@@ -18,7 +17,6 @@ public:
     MyCalendar(const MyCalendar &mycalendar);
     ~MyCalendar();
 
-    unsigned int getId() const;
     std::string getName() const;
     QColor getColor() const;
 

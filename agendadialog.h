@@ -11,12 +11,12 @@ class AgendaDialog : public QDialog
 {
     Q_OBJECT
 
+private:
+    Ui::AgendaDialog *ui;
+
 public:
     explicit AgendaDialog(QWidget *parent = nullptr);
     ~AgendaDialog();
-
-private:
-    Ui::AgendaDialog *ui;
 };
 
 #endif // AGENDADIALOG_H

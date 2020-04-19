@@ -21,6 +21,7 @@ private:
     QString selected_name;
     MyCalendarDialog *calendardialog;
     DataAggregator *datamanager;
+
 public:
     explicit MyCalendarAddDialog(MyCalendarDialog *dialog, QWidget *parent = nullptr);
     ~MyCalendarAddDialog();

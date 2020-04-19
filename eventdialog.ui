@@ -31,7 +31,7 @@
     <string>Name:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="name_Edit">
+  <widget class="QLineEdit" name="name_edit">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -59,7 +59,7 @@
     <string>Place:</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="name_Edit_2">
+  <widget class="QLineEdit" name="place_edit">
    <property name="geometry">
     <rect>
      <x>110</x>
@@ -87,7 +87,7 @@
     <string>Description:</string>
    </property>
   </widget>
-  <widget class="QTextEdit" name="textEdit">
+  <widget class="QTextEdit" name="description_edit">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -175,7 +175,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Save</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_2">
@@ -188,7 +188,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>PushButton</string>
+    <string>Cancel</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton_3">

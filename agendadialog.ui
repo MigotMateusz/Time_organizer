@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>AgendaDialog</class>
  <widget class="QDialog" name="AgendaDialog">
@@ -5,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>591</width>
     <height>300</height>
    </rect>
   </property>

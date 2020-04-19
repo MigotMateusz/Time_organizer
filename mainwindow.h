@@ -18,6 +18,7 @@ class MainWindow : public QMainWindow
 private:
     Ui::MainWindow *ui;
     DataAggregator *datamanager;
+
 private slots:
     void nextmonth_cal();
     void prevmonth_cal();
@@ -25,6 +26,7 @@ private slots:
     void open_MyCalendarDialog();
     void open_EventDialog();
     void refresh_dynamic_label();
+
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

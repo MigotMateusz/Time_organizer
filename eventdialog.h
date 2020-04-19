@@ -22,6 +22,7 @@ private:
 public:
     explicit EventDialog(QWidget *parent = nullptr);
     ~EventDialog();
+
     void setEvent(Event *event);
     Event *getEvent();
 };

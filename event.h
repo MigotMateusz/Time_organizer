@@ -26,6 +26,8 @@ public:
     std::string get_place() const;
     QDate get_date() const;
     MyCalendar *getcalendar() const;
+
+    bool operator==(Event &event);
 };
 
 #endif // EVENT_H

@@ -2,11 +2,12 @@
 #define MYCALENDARDIALOG_H
 
 #include <QDialog>
-#include "mycalendar.h"
 #include <vector>
 #include <QMessageBox>
 #include <QListWidget>
 #include "dataaggregator.h"
+#include "mycalendar.h"
+
 
 namespace Ui {
 class MyCalendarDialog;
@@ -18,13 +19,12 @@ class MyCalendarDialog : public QDialog
 
 private:
     Ui::MyCalendarDialog *ui;
-public:
-    DataAggregator *datamanager;
 public slots:
     void open_MyCalendarDeleteDialog();
     void open_MyCalendarAddDialog();
 
 public:
+    DataAggregator *datamanager;
     explicit MyCalendarDialog(DataAggregator *dmanager, QWidget *parent = nullptr);
     ~MyCalendarDialog();
     std::vector<MyCalendar> calendars;

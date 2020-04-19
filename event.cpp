@@ -46,3 +46,6 @@ QDate Event::get_date() const{
 MyCalendar* Event::getcalendar() const{
     return calendar;
 }
+bool Event::operator==(Event &event){
+    return(this->get_name() == event.get_name());
+}

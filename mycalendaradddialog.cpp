@@ -42,6 +42,8 @@ void MyCalendarAddDialog::on_button_save_click(){
     }
     MyCalendar newcalendar(ui->lineEdit->text().toStdString(), this->selected_color);
     calendardialog->calendars.push_back(newcalendar);
+    this->datamanager->calendars.push_back(newcalendar);
+    this->datamanager->load_MyCalendar_to_database();
     this->calendardialog->loadMyCalendars();
     this->close();
 }
