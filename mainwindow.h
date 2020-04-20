@@ -26,6 +26,7 @@ private slots:
     void open_MyCalendarDialog();
     void open_EventDialog();
     void refresh_dynamic_label();
+    void open_agendaDialog();
 
 public:
     MainWindow(QWidget *parent = nullptr);

@@ -7,6 +7,7 @@
 #include "mycalendardialog.h"
 #include "mycalendaradddialog.h"
 #include "mycalendardeletedialog.h"
+#include "agendadialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -19,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->prevmonth_header_button, SIGNAL (released()), this, SLOT(prevmonth_cal()));
     connect(ui->calendar, SIGNAL(selectionChanged()),this, SLOT(selected_day_label()));
     connect(ui->calendar, SIGNAL(selectionChanged()),this, SLOT(refresh_dynamic_label()));
-
+    connect(ui->actionSee_Agenda, SIGNAL(triggered()), this, SLOT(open_agendaDialog()));
     connect(ui->actionSee_calendars, SIGNAL(triggered()) ,this, SLOT(open_MyCalendarDialog()));
     connect(ui->actionEvent_Manager, SIGNAL(triggered()),this, SLOT(open_EventDialog()));
     datamanager = new DataAggregator;
@@ -73,11 +74,26 @@ void MainWindow::open_EventDialog(){
 }
 void MainWindow::refresh_dynamic_label(){
     ui->dynamic_label->clear();
-    for(auto pom : this->datamanager->events){
-       if(pom.get_date() == ui->calendar->selectedDate()){
-            QPixmap pixmap(10, 10);
-            pixmap.fill(pom.getcalendar()->getColor());
-            ui->dynamic_label->addItem(new QListWidgetItem(QIcon(pixmap), QString(pom.get_name().c_str())));
+    QPixmap pixmap1(20,10);
+    for(auto cal : this->datamanager->calendars){
+        QPixmap pixmap(10, 10);
+        pixmap1.fill(QColor(255,255,255));
+        pixmap.fill(cal.getColor());
+
+        bool naglowek = false;
+        for(auto pom : this->datamanager->events){
+           if(pom.get_date() == ui->calendar->selectedDate() && pom.getcalendar()->getName() == cal.getName()){
+                if(naglowek == false)
+                     ui->dynamic_label->addItem(new QListWidgetItem(QIcon(pixmap), QString(cal.getName().c_str())));
+                naglowek = true;
+                ui->dynamic_label->addItem(new QListWidgetItem(QIcon(pixmap1), QString(pom.get_name().c_str())));
+            }
         }
     }
+
+}
+void MainWindow::open_agendaDialog(){
+    AgendaDialog agenda(datamanager);
+    agenda.setModal(true);
+    agenda.exec();
 }

@@ -2,6 +2,7 @@
 #define AGENDADIALOG_H
 
 #include <QDialog>
+#include "dataaggregator.h"
 
 namespace Ui {
 class AgendaDialog;
@@ -13,9 +14,9 @@ class AgendaDialog : public QDialog
 
 private:
     Ui::AgendaDialog *ui;
-
+    DataAggregator *datamanager;
 public:
-    explicit AgendaDialog(QWidget *parent = nullptr);
+    explicit AgendaDialog(DataAggregator* dman, QWidget *parent = nullptr);
     ~AgendaDialog();
 };
 
