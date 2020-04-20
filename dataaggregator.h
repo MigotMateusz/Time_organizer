@@ -6,6 +6,7 @@
 #include "mycalendar.h"
 #include "event.h"
 #include "task.h"
+//#include "functions.cpp"
 
 class DataAggregator
 {
@@ -14,7 +15,11 @@ public:
     std::vector<Event> events;
     std::vector<Task> tasks;
     DataAggregator();
+    DataAggregator(const DataAggregator&);
     ~DataAggregator();
+
+    MyCalendar get_calendar_from_name(std::string name);
+
     void load_MyCalendar_from_database();
     void load_Event_from_database();
     void load_Task_from_database();

@@ -34,6 +34,7 @@ HEADERS += \
     dataaggregator.h \
     event.h \
     eventdialog.h \
+    functions.h \
     mainwindow.h \
     mycalendar.h \
     mycalendaradddialog.h \

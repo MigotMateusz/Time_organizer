@@ -66,13 +66,13 @@ void MainWindow::open_MyCalendarDialog(){
     myCalendarDialog.exec();
 }
 void MainWindow::open_EventDialog(){
-    EventDialog eventDialog;
+    EventDialog eventDialog(this->datamanager);
     eventDialog.setModal(true);
     eventDialog.exec();
+    this->refresh_dynamic_label();
 }
 void MainWindow::refresh_dynamic_label(){
     ui->dynamic_label->clear();
-
     for(auto pom : this->datamanager->events){
        if(pom.get_date() == ui->calendar->selectedDate()){
             QPixmap pixmap(10, 10);

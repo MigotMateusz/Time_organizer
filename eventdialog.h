@@ -5,6 +5,7 @@
 #include <QDialog>
 #include "event.h"
 #include "mycalendar.h"
+#include "dataaggregator.h"
 
 namespace Ui {
 class EventDialog;
@@ -16,15 +17,18 @@ class EventDialog : public QDialog
 
 private:
     Ui::EventDialog *ui;
-    std::vector<MyCalendar *> calendars;
+    DataAggregator *datamanager;
     Event *event;
 
 public:
-    explicit EventDialog(QWidget *parent = nullptr);
+    explicit EventDialog(DataAggregator *datamanager, QWidget *parent = nullptr);
     ~EventDialog();
-
     void setEvent(Event *event);
     Event *getEvent();
+public slots:
+    void close_windows();
+    void delete_on_click();
+    void save_on_click();
 };
 
 #endif // EVENTDIALOG_H
