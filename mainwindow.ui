@@ -201,6 +201,9 @@ background-color: #ffffff;</string>
     <property name="text">
      <string>&gt;</string>
     </property>
+    <property name="shortcut">
+     <string>Ctrl++</string>
+    </property>
    </widget>
    <widget class="QPushButton" name="prevmonth_header_button">
     <property name="geometry">
@@ -225,6 +228,9 @@ color: black;
     </property>
     <property name="text">
      <string notr="true">&lt;</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+-</string>
     </property>
     <property name="autoExclusive">
      <bool>true</bool>
@@ -567,7 +573,6 @@ background-color: rgb(206, 206, 206);</string>
      <string>Help</string>
     </property>
     <addaction name="actionKey_shortcuts"/>
-    <addaction name="actionAbout_me"/>
     <addaction name="actionTutorial"/>
    </widget>
    <widget class="QMenu" name="menuEvents">
@@ -599,22 +604,34 @@ background-color: rgb(206, 206, 206);</string>
   </action>
   <action name="actionTutorial">
    <property name="text">
-    <string>Tutorial</string>
+    <string>About Program /Tutorial</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+T</string>
    </property>
   </action>
   <action name="actionSave_tasks">
    <property name="text">
     <string>Save tasks To File</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
   </action>
   <action name="actionLoad_Tasks_From_File">
    <property name="text">
     <string>Load Tasks From File</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
   </action>
   <action name="actionNew_calendar">
    <property name="text">
     <string>New calendar</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
    </property>
   </action>
   <action name="actionAdd_calendar">
@@ -631,10 +648,16 @@ background-color: rgb(206, 206, 206);</string>
    <property name="text">
     <string>See Agenda</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
   </action>
   <action name="actionSee_calendars">
    <property name="text">
     <string>MyCalendar Manager</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
    </property>
   </action>
   <action name="actionDelete_task">
@@ -645,6 +668,9 @@ background-color: rgb(206, 206, 206);</string>
   <action name="actionEvent_Manager">
    <property name="text">
     <string>Event Manager</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
    </property>
   </action>
  </widget>

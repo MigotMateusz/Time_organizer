@@ -27,7 +27,8 @@ private slots:
     void open_EventDialog();
     void refresh_dynamic_label();
     void open_agendaDialog();
-
+    void open_github_in_webbrowser();
+    void open_keyshortcutDialog();
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

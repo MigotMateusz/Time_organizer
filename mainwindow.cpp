@@ -1,6 +1,8 @@
 #include <string>
 #include <QDate>
 #include <QListWidget>
+#include <QDesktopServices>
+#include <QUrl>
 #include <functional>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -8,6 +10,7 @@
 #include "mycalendaradddialog.h"
 #include "mycalendardeletedialog.h"
 #include "agendadialog.h"
+#include "keyshortcutsdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -23,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionSee_Agenda, SIGNAL(triggered()), this, SLOT(open_agendaDialog()));
     connect(ui->actionSee_calendars, SIGNAL(triggered()) ,this, SLOT(open_MyCalendarDialog()));
     connect(ui->actionEvent_Manager, SIGNAL(triggered()),this, SLOT(open_EventDialog()));
+    connect(ui->actionTutorial, SIGNAL(triggered()), this, SLOT(open_github_in_webbrowser()));
+    connect(ui->actionKey_shortcuts, SIGNAL(triggered()), this, SLOT(open_keyshortcutDialog()));
     datamanager = new DataAggregator;
     datamanager->load_MyCalendar_from_database();
     datamanager->load_Event_from_database();
@@ -96,4 +101,12 @@ void MainWindow::open_agendaDialog(){
     AgendaDialog agenda(datamanager);
     agenda.setModal(true);
     agenda.exec();
+}
+void MainWindow::open_github_in_webbrowser(){
+    QDesktopServices::openUrl(QUrl("https://github.com/MigotMateusz/Time_organizer"));
+}
+void MainWindow::open_keyshortcutDialog(){
+    KeyShortcutsDialog dialog;
+    dialog.setModal(true);
+    dialog.exec();
 }
