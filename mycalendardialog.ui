@@ -10,6 +10,11 @@
     <height>700</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>9</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>MyCalendar Dialog</string>
   </property>
@@ -21,6 +26,11 @@
      <width>440</width>
      <height>521</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QPushButton" name="Add_Button">

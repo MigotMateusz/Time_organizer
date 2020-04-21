@@ -56,27 +56,37 @@
    <widget class="QPushButton" name="todo_button">
     <property name="geometry">
      <rect>
-      <x>1180</x>
-      <y>720</y>
+      <x>1280</x>
+      <y>700</y>
       <width>211</width>
-      <height>121</height>
+      <height>131</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="statusTip">
+     <string/>
+    </property>
+    <property name="whatsThis">
+     <string/>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
     </property>
     <property name="text">
      <string>To-do lista</string>
     </property>
-   </widget>
-   <widget class="QPushButton" name="calendar_button">
-    <property name="geometry">
-     <rect>
-      <x>1390</x>
-      <y>720</y>
-      <width>211</width>
-      <height>121</height>
-     </rect>
+    <property name="icon">
+     <iconset theme="dark"/>
     </property>
-    <property name="text">
-     <string>Kalendarz</string>
+    <property name="flat">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QLabel" name="day_number_label">
@@ -244,6 +254,12 @@ color: black;
       <width>351</width>
       <height>611</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Yu Gothic UI Light</family>
+      <pointsize>12</pointsize>
+     </font>
     </property>
    </widget>
   </widget>
@@ -675,5 +691,22 @@ background-color: rgb(206, 206, 206);</string>
   </action>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>calendar</sender>
+   <signal>activated(QDate)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>590</x>
+     <y>487</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

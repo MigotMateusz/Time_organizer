@@ -2,6 +2,8 @@
 #include <QDate>
 #include <QListWidget>
 #include <QDesktopServices>
+#include <QCalendarWidget>
+#include <QToolTip>
 #include <QUrl>
 #include <functional>
 #include "mainwindow.h"
@@ -11,6 +13,7 @@
 #include "mycalendardeletedialog.h"
 #include "agendadialog.h"
 #include "keyshortcutsdialog.h"
+#include "hoursdialog.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -28,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionEvent_Manager, SIGNAL(triggered()),this, SLOT(open_EventDialog()));
     connect(ui->actionTutorial, SIGNAL(triggered()), this, SLOT(open_github_in_webbrowser()));
     connect(ui->actionKey_shortcuts, SIGNAL(triggered()), this, SLOT(open_keyshortcutDialog()));
+    connect(ui->calendar, SIGNAL(clicked(QDate)), this, SLOT(open_hoursDialog()));
     datamanager = new DataAggregator;
     datamanager->load_MyCalendar_from_database();
     datamanager->load_Event_from_database();
@@ -81,7 +85,7 @@ void MainWindow::refresh_dynamic_label(){
     ui->dynamic_label->clear();
     QPixmap pixmap1(20,10);
     for(auto cal : this->datamanager->calendars){
-        QPixmap pixmap(10, 10);
+        QPixmap pixmap(15, 15);
         pixmap1.fill(QColor(255,255,255));
         pixmap.fill(cal.getColor());
 
@@ -91,7 +95,15 @@ void MainWindow::refresh_dynamic_label(){
                 if(naglowek == false)
                      ui->dynamic_label->addItem(new QListWidgetItem(QIcon(pixmap), QString(cal.getName().c_str())));
                 naglowek = true;
-                ui->dynamic_label->addItem(new QListWidgetItem(QIcon(pixmap1), QString(pom.get_name().c_str())));
+                pixmap1.fill(pom.getcalendar()->getColor());
+                QListWidgetItem* single_event = new QListWidgetItem(QIcon(pixmap1), QString(pom.get_name().c_str()));
+                QString message = QString("<p>") + QString(pom.get_description().c_str()) + QString("</p>") +
+                        QString("<p>Place: ") + QString(pom.get_place().c_str()) + QString("</p>") +
+                        QString("<p>Time: ") + QString(pom.get_date().toString()) + QString("</p");
+                single_event->setToolTip(message);
+                single_event->setBackground(pom.getcalendar()->getColor());
+
+                ui->dynamic_label->addItem(single_event);
             }
         }
     }
@@ -107,6 +119,11 @@ void MainWindow::open_github_in_webbrowser(){
 }
 void MainWindow::open_keyshortcutDialog(){
     KeyShortcutsDialog dialog;
+    dialog.setModal(true);
+    dialog.exec();
+}
+void MainWindow::open_hoursDialog(){
+    HoursDialog dialog;
     dialog.setModal(true);
     dialog.exec();
 }

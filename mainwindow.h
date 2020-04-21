@@ -19,7 +19,7 @@ private:
     Ui::MainWindow *ui;
     DataAggregator *datamanager;
 
-private slots:
+public slots:
     void nextmonth_cal();
     void prevmonth_cal();
     void selected_day_label();
@@ -29,6 +29,7 @@ private slots:
     void open_agendaDialog();
     void open_github_in_webbrowser();
     void open_keyshortcutDialog();
+    void open_hoursDialog();
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

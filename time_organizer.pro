@@ -21,6 +21,7 @@ SOURCES += \
     event.cpp \
     eventdialog.cpp \
     functions.cpp \
+    hoursdialog.cpp \
     keyshortcutsdialog.cpp \
     main.cpp \
     mainwindow.cpp \
@@ -36,6 +37,7 @@ HEADERS += \
     event.h \
     eventdialog.h \
     functions.h \
+    hoursdialog.h \
     keyshortcutsdialog.h \
     mainwindow.h \
     mycalendar.h \
@@ -47,6 +49,7 @@ HEADERS += \
 FORMS += \
     agendadialog.ui \
     eventdialog.ui \
+    hoursdialog.ui \
     keyshortcutsdialog.ui \
     mainwindow.ui \
     mycalendaradddialog.ui \
