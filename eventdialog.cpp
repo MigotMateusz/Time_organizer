@@ -56,7 +56,7 @@ void EventDialog::save_on_click(){
     }
     MyCalendar *cal = new MyCalendar(this->datamanager->get_calendar_from_name(ui->comboBox->currentText().toStdString()));
     //Event::Event(std::string n,std::string d, QDate date, MyCalendar *cal, std::string p
-    Event newevent(ui->name_edit->text().toStdString(),ui->description_edit->toPlainText().toStdString(), ui->dateTimeEdit->date(),
+    Event newevent(ui->name_edit->text().toStdString(),ui->description_edit->toPlainText().toStdString(), ui->dateTimeEdit->dateTime(),
                    cal, ui->place_edit->text().toStdString());
     this->datamanager->events.push_back(newevent);
     this->datamanager->load_Event_to_database();

@@ -3,6 +3,7 @@
 
 #include <string>
 #include <QDate>
+#include <QDateTime>
 #include "mycalendar.h"
 
 class Event
@@ -11,12 +12,12 @@ private:
     std::string name_of_the_event;
     std::string description;
     std::string place; //optional
-    QDate date;
+    QDateTime date;
     MyCalendar *calendar;
 
 public:
     Event();
-    Event(std::string,std::string, QDate, MyCalendar*, std::string);
+    Event(std::string,std::string, QDateTime, MyCalendar*, std::string);
     Event(const Event&);
 
     ~Event();
@@ -24,7 +25,7 @@ public:
     std::string get_name() const;
     std::string get_description() const;
     std::string get_place() const;
-    QDate get_date() const;
+    QDateTime get_date() const;
     MyCalendar *getcalendar() const;
 
     bool operator==(Event &event);

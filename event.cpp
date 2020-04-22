@@ -3,12 +3,12 @@
 Event::Event(){
     this->name_of_the_event = "Event";
     this->description = "This is empty event";
-    this->date.currentDate();
+    this->date.currentDateTime();
     this->calendar = nullptr;
     this->place = "Home";
 }
 
-Event::Event(std::string n,std::string d, QDate date, MyCalendar *cal, std::string p){
+Event::Event(std::string n,std::string d, QDateTime date, MyCalendar *cal, std::string p){
     this->name_of_the_event = n;
     this->description = d;
     this->date = date;
@@ -39,7 +39,7 @@ std::string Event::get_place() const{
     return place;
 }
 
-QDate Event::get_date() const{
+QDateTime Event::get_date() const{
     return date;
 }
 

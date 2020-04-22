@@ -91,7 +91,7 @@ void MainWindow::refresh_dynamic_label(){
 
         bool naglowek = false;
         for(auto pom : this->datamanager->events){
-           if(pom.get_date() == ui->calendar->selectedDate() && pom.getcalendar()->getName() == cal.getName()){
+           if(pom.get_date().date() == ui->calendar->selectedDate() && pom.getcalendar()->getName() == cal.getName()){
                 if(naglowek == false)
                      ui->dynamic_label->addItem(new QListWidgetItem(QIcon(pixmap), QString(cal.getName().c_str())));
                 naglowek = true;
