@@ -42,6 +42,10 @@
      <height>51</height>
     </rect>
    </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(43, 255, 32);
+border-color: rgb(43, 255, 32);</string>
+   </property>
    <property name="text">
     <string>Add new MyCalendar</string>
    </property>
@@ -67,6 +71,11 @@
      <width>220</width>
      <height>51</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 0, 0);
+border-color: rgb(255, 0, 0);
+gridline-color: rgb(255, 0, 0);</string>
    </property>
    <property name="text">
     <string>Delete selected MyCalendar</string>

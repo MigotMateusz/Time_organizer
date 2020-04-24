@@ -13,6 +13,9 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true"/>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QCalendarWidget" name="calendar">
     <property name="geometry">
@@ -22,6 +25,11 @@
       <width>1181</width>
       <height>791</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
     </property>
     <property name="styleSheet">
      <string notr="true"/>
@@ -83,7 +91,8 @@
      <string>To-do lista</string>
     </property>
     <property name="icon">
-     <iconset theme="dark"/>
+     <iconset theme="dark">
+      <normaloff>.</normaloff>.</iconset>
     </property>
     <property name="flat">
      <bool>false</bool>
@@ -149,15 +158,18 @@
    <widget class="QLabel" name="month_header_label">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>340</x>
       <y>0</y>
-      <width>171</width>
+      <width>501</width>
       <height>61</height>
      </rect>
     </property>
     <property name="font">
      <font>
+      <family>Bahnschrift SemiBold</family>
       <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
      </font>
     </property>
     <property name="text">
@@ -165,27 +177,6 @@
     </property>
     <property name="alignment">
      <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="year_header_label">
-    <property name="geometry">
-     <rect>
-      <x>620</x>
-      <y>0</y>
-      <width>131</width>
-      <height>61</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>18</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>2020</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
     </property>
    </widget>
    <widget class="QPushButton" name="nextmonth_header_button">
@@ -206,10 +197,11 @@
     </property>
     <property name="styleSheet">
      <string notr="true">color: black;
-background-color: #ffffff;</string>
+background-image: url(:/new/prefix1/next.png);
+background-color: rgb(44, 118, 255);</string>
     </property>
     <property name="text">
-     <string>&gt;</string>
+     <string/>
     </property>
     <property name="shortcut">
      <string>Ctrl++</string>
@@ -233,11 +225,13 @@ background-color: #ffffff;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">background-color: white;
+background-color: rgb(44, 118, 255);
+background-image: url(:/new/prefix1/prev.png);
 color: black;
 </string>
     </property>
     <property name="text">
-     <string notr="true">&lt;</string>
+     <string notr="true"/>
     </property>
     <property name="shortcut">
      <string>Ctrl+-</string>
@@ -566,18 +560,6 @@ alternate-background-color: rgb(39, 39, 39);
 selection-color: rgb(53, 53, 53);
 background-color: rgb(58, 58, 58);</string>
    </property>
-   <widget class="QMenu" name="menuFIle">
-    <property name="styleSheet">
-     <string notr="true">color: rgb(0, 0, 0);
-background-color: rgb(206, 206, 206);</string>
-    </property>
-    <property name="title">
-     <string>FIle</string>
-    </property>
-    <addaction name="actionSave_tasks"/>
-    <addaction name="actionLoad_Tasks_From_File"/>
-    <addaction name="actionNew_calendar"/>
-   </widget>
    <widget class="QMenu" name="menuCalendars">
     <property name="title">
      <string>Calendars</string>
@@ -598,7 +580,6 @@ background-color: rgb(206, 206, 206);</string>
     <addaction name="actionSee_Agenda"/>
     <addaction name="actionEvent_Manager"/>
    </widget>
-   <addaction name="menuFIle"/>
    <addaction name="menuEvents"/>
    <addaction name="menuCalendars"/>
    <addaction name="menuHelp"/>

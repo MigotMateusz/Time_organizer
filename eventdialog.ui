@@ -40,6 +40,11 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLabel" name="name_label_2">
    <property name="geometry">
@@ -68,6 +73,11 @@
      <height>31</height>
     </rect>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </widget>
   <widget class="QLabel" name="name_label_3">
    <property name="geometry">
@@ -95,6 +105,11 @@
      <width>471</width>
      <height>121</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QLabel" name="name_label_4">
@@ -144,7 +159,7 @@
    </property>
    <property name="font">
     <font>
-     <pointsize>12</pointsize>
+     <pointsize>10</pointsize>
     </font>
    </property>
    <property name="date">
@@ -163,6 +178,11 @@
      <width>211</width>
      <height>31</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </widget>
   <widget class="QPushButton" name="add_button">
