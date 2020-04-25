@@ -1,3 +1,0 @@
-Calendar1 255,255,255
-Calendar2 58,190,20
-Calendar3 255,30,190
