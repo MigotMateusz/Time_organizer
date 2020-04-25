@@ -12,9 +12,11 @@ MyCalendarAddDialog::MyCalendarAddDialog(MyCalendarDialog *dialog, QWidget *pare
     QPixmap pixmap(20, 20);
     pixmap.fill(QColor(0, 0, 0));
     ui->button_color->setIcon(QIcon(pixmap));
+
     connect(ui->button_color, SIGNAL(released()), this, SLOT(on_button_color_click()));
     connect(ui->cancel_button, SIGNAL(released()), this, SLOT(on_button_cancel_click()));
     connect(ui->save_button, SIGNAL(released()), this, SLOT(on_button_save_click()));
+
     datamanager = dialog->datamanager;
 }
 
@@ -41,8 +43,7 @@ void MyCalendarAddDialog::on_button_save_click(){
         return;
     }
     MyCalendar newcalendar(ui->lineEdit->text().toStdString(), this->selected_color);
-    calendardialog->calendars.push_back(newcalendar);
-    this->datamanager->calendars.push_back(newcalendar);
+    this->datamanager->add_to_calendars(newcalendar);
     this->datamanager->load_MyCalendar_to_database();
     this->calendardialog->loadMyCalendars();
     this->close();

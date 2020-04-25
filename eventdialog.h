@@ -24,7 +24,7 @@ public:
     explicit EventDialog(DataAggregator *datamanager, QWidget *parent = nullptr);
     ~EventDialog();
     void setEvent(Event *event);
-    Event *getEvent();
+
 public slots:
     void close_windows();
     void delete_on_click();

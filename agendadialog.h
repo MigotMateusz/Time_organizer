@@ -15,6 +15,7 @@ class AgendaDialog : public QDialog
 private:
     Ui::AgendaDialog *ui;
     DataAggregator *datamanager;
+
 public:
     explicit AgendaDialog(DataAggregator* dman, QWidget *parent = nullptr);
     ~AgendaDialog();

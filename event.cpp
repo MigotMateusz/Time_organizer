@@ -15,6 +15,7 @@ Event::Event(std::string n,std::string d, QDateTime date, MyCalendar *cal, std::
     this->calendar = cal;
     this->place = p;
 }
+
 Event::Event(const Event& event){
     this->name_of_the_event = event.get_name();
     this->description = event.get_description();
@@ -46,6 +47,7 @@ QDateTime Event::get_date() const{
 MyCalendar* Event::getcalendar() const{
     return calendar;
 }
+
 bool Event::operator==(Event &event){
     return(this->get_name() == event.get_name());
 }

@@ -27,7 +27,6 @@ public:
     DataAggregator *datamanager;
     explicit MyCalendarDialog(DataAggregator *dmanager, QWidget *parent = nullptr);
     ~MyCalendarDialog();
-    std::vector<MyCalendar> calendars;
     void loadMyCalendars();
 };
 

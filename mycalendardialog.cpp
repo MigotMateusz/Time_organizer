@@ -16,7 +16,7 @@ MyCalendarDialog::MyCalendarDialog(DataAggregator *dmanager, QWidget *parent) :
     connect(ui->Delete_Button, SIGNAL(released()), this, SLOT(open_MyCalendarDeleteDialog()));
     datamanager = dmanager;
 
-    for(auto i : this->datamanager->calendars){
+    for(auto i : this->datamanager->get_calendars()){
         QPixmap pixmap(10, 10);
         pixmap.fill(i.getColor());
         this->ui->listWidget->addItem(new QListWidgetItem(QIcon(pixmap),QString(i.getName().c_str())));
@@ -27,6 +27,7 @@ MyCalendarDialog::~MyCalendarDialog()
 {
     delete ui;
 }
+
 void MyCalendarDialog::open_MyCalendarAddDialog(){
     MyCalendarAddDialog myCalendarAddDialog(this);
     myCalendarAddDialog.setModal(true);
@@ -42,8 +43,8 @@ void MyCalendarDialog::open_MyCalendarDeleteDialog(){
     QMessageBox::StandardButton reply;
     reply = QMessageBox::question(this, "Confirm", QString("Do you want to delete ") + selected_category + QString("?"),
                                   QMessageBox::Yes|QMessageBox::No);
-    if(reply = QMessageBox::Yes){
-        erase_an_element_from_vector(this->datamanager->calendars, selected_category);
+    if(reply == QMessageBox::Yes){
+        this->datamanager->erase_an_element_from_calendars(selected_category);
         this->datamanager->load_MyCalendar_to_database();
         this->loadMyCalendars();
     }
@@ -51,7 +52,7 @@ void MyCalendarDialog::open_MyCalendarDeleteDialog(){
 }
 void MyCalendarDialog::loadMyCalendars(){
     this->ui->listWidget->clear();
-    for(auto i : this->datamanager->calendars){
+    for(auto i : this->datamanager->get_calendars()){
         QPixmap pixmap(10, 10);
         pixmap.fill(i.getColor());
         this->ui->listWidget->addItem(new QListWidgetItem(QIcon(pixmap),QString(i.getName().c_str())));

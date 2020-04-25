@@ -84,13 +84,13 @@ void MainWindow::open_EventDialog(){
 void MainWindow::refresh_dynamic_label(){
     ui->dynamic_label->clear();
     QPixmap pixmap1(20,10);
-    for(auto cal : this->datamanager->calendars){
+    for(auto cal : this->datamanager->get_calendars()){
         QPixmap pixmap(15, 15);
         pixmap1.fill(QColor(255,255,255));
         pixmap.fill(cal.getColor());
 
         bool naglowek = false;
-        for(auto pom : this->datamanager->events){
+        for(auto pom : this->datamanager->get_events()){
            if(pom.get_date().date() == ui->calendar->selectedDate() && pom.getcalendar()->getName() == cal.getName()){
                 if(naglowek == false)
                      ui->dynamic_label->addItem(new QListWidgetItem(QIcon(pixmap), QString(cal.getName().c_str())));
