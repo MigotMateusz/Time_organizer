@@ -60,10 +60,21 @@ void DataAggregator::load_Event_from_database(){
     std::fstream plik("events.txt", std::ios::in);
     std::string pom_nazwa, pom_desc, pom_year, pom_month, pom_day, pom_calendar, pom_place;
     std::string pom_hours, pom_minutes, pom_seconds;
-
+    std::string pom;
     while(plik){
         MyCalendar *cal;
-        plik>>pom_nazwa>>pom_desc>>pom_year>>pom_month>>pom_day>>pom_hours>>pom_minutes>>pom_calendar>>pom_place;
+        //plik>>pom_nazwa>>pom_desc>>pom_year>>pom_month>>pom_day>>pom_hours>>pom_minutes>>pom_calendar>>pom_place;
+        //Event_add_1 Event_add_1_description 2020 4 19 11 50 praca home
+        std::getline(plik, pom);
+        unsigned first = pom.find("\"");
+        unsigned last = pom.find_last_of("\"");
+        pom_desc = pom.substr(first + 1, last - first - 1);
+
+        pom_nazwa = pom.substr(0, first);
+        std::stringstream ss(pom.substr(last +1, pom.size() - last));
+
+        ss>>pom_year>>pom_month>>pom_day>>pom_hours>>pom_minutes>>pom_calendar>>pom_place;
+
         for(auto everycalendar : this->calendars){
             if(everycalendar.getName() == pom_calendar){
                cal = new MyCalendar(everycalendar);
@@ -111,7 +122,7 @@ void DataAggregator::load_Event_to_database(){
     std::fstream plik1;
     plik1.open("events.txt", std::ios::out);
     for(int i = 0; i < int(this->events.size()); i++){
-        plik1<<this->events[i].get_name()<<" "<<this->events[i].get_description()<<" "<<this->events[i].get_date().date().year()<<" "
+        plik1<<this->events[i].get_name()<<" \""<<this->events[i].get_description()<<"\" "<<this->events[i].get_date().date().year()<<" "
             <<this->events[i].get_date().date().month()<<" "<<this->events[i].get_date().date().day()
             <<" "<<this->events[i].get_date().time().hour()
             <<" "<<this->events[i].get_date().time().minute()<<" "<<this->events[i].getcalendar()->getName()<<" "

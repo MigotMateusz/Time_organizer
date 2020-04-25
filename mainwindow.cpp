@@ -13,7 +13,7 @@
 #include "mycalendardeletedialog.h"
 #include "agendadialog.h"
 #include "keyshortcutsdialog.h"
-#include "hoursdialog.h"
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -31,7 +31,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionEvent_Manager, SIGNAL(triggered()),this, SLOT(open_EventDialog()));
     connect(ui->actionTutorial, SIGNAL(triggered()), this, SLOT(open_github_in_webbrowser()));
     connect(ui->actionKey_shortcuts, SIGNAL(triggered()), this, SLOT(open_keyshortcutDialog()));
-    connect(ui->calendar, SIGNAL(clicked(QDate)), this, SLOT(open_hoursDialog()));
+    //connect(ui->calendar, SIGNAL(clicked(QDate)), this, SLOT(open_hoursDialog()));
     datamanager = new DataAggregator;
     datamanager->load_MyCalendar_from_database();
     datamanager->load_Event_from_database();
@@ -119,11 +119,6 @@ void MainWindow::open_github_in_webbrowser(){
 }
 void MainWindow::open_keyshortcutDialog(){
     KeyShortcutsDialog dialog;
-    dialog.setModal(true);
-    dialog.exec();
-}
-void MainWindow::open_hoursDialog(){
-    HoursDialog dialog;
     dialog.setModal(true);
     dialog.exec();
 }
