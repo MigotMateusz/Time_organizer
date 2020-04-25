@@ -1,5 +1,6 @@
 #include <string>
 #include <QDate>
+#include <QLocale>
 #include <QListWidget>
 #include <QDesktopServices>
 #include <QCalendarWidget>
@@ -10,7 +11,6 @@
 #include "ui_mainwindow.h"
 #include "mycalendardialog.h"
 #include "mycalendaradddialog.h"
-#include "mycalendardeletedialog.h"
 #include "agendadialog.h"
 #include "keyshortcutsdialog.h"
 
@@ -46,28 +46,29 @@ MainWindow::~MainWindow()
 
 void MainWindow::nextmonth_cal(){
     ui->calendar->showNextMonth();
-    QString name_month = QDate::longMonthName(ui->calendar->monthShown());
-    QString name_year = QVariant(ui->calendar->yearShown()).toString();
-    ui->month_header_label->setText(name_month + "  " + name_year);
-    //ui->year_header_label->setText(name_year);
+    //QString name_month = QDate::longMonthName(ui->calendar->monthShown());
+    QLocale locale(QLocale::English);
+    QString name_month_year = locale.toString(QDate(ui->calendar->yearShown(),ui->calendar->monthShown(),1),"MMMM yyyy");
+    //QString name_year = QVariant(ui->calendar->yearShown()).toString();
+    ui->month_header_label->setText(name_month_year);
 }
 void MainWindow::prevmonth_cal(){
     ui->calendar->showPreviousMonth();
-    QString name_month = QDate::longMonthName(ui->calendar->monthShown());
-    QString name_year = QVariant(ui->calendar->yearShown()).toString();
-    ui->month_header_label->setText(name_month + "  " + name_year);
+    QLocale locale(QLocale::English);
+    QString name_month_year = locale.toString(QDate(ui->calendar->yearShown(),ui->calendar->monthShown(),1),"MMMM yyyy");
+    ui->month_header_label->setText(name_month_year);
     //ui->year_header_label->setText(name_year);
 }
 void MainWindow::selected_day_label(){
+    QLocale locale(QLocale::English);
     QDate date = ui->calendar->selectedDate();
     ui->day_number_label->setText(QVariant(date.day()).toString());
-    QString numberday_week = QDate::longDayName(date.dayOfWeek());
+    QString numberday_week = locale.dayName(date.dayOfWeek());
     ui->day_of_week_label->setText(numberday_week);
-    QString m_an_y = QDate::longMonthName(date.month())+ " " + QVariant(date.year()).toString();
+    QString m_an_y = locale.toString(QDate(ui->calendar->yearShown(),ui->calendar->monthShown(),1),"MMMM yyyy");
     ui->month_and_year_label->setText(m_an_y);
-    QString name_month = QDate::longMonthName(ui->calendar->monthShown());
-    QString name_year = QVariant(ui->calendar->yearShown()).toString();
-    ui->month_header_label->setText(name_month + "  " + name_year);
+    QString name_month_year = locale.toString(QDate(ui->calendar->yearShown(),ui->calendar->monthShown(),1),"MMMM yyyy");
+    ui->month_header_label->setText(name_month_year);
 
 }
 void MainWindow::open_MyCalendarDialog(){
@@ -114,9 +115,11 @@ void MainWindow::open_agendaDialog(){
     agenda.setModal(true);
     agenda.exec();
 }
+
 void MainWindow::open_github_in_webbrowser(){
     QDesktopServices::openUrl(QUrl("https://github.com/MigotMateusz/Time_organizer"));
 }
+
 void MainWindow::open_keyshortcutDialog(){
     KeyShortcutsDialog dialog;
     dialog.setModal(true);

@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include "eventdialog.h"
-#include "dataaggregator.h"
+#include "../utilities/dataaggregator.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

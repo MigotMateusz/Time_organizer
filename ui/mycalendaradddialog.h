@@ -3,9 +3,9 @@
 
 #include <QDialog>
 #include <QColorDialog>
-#include "mycalendar.h"
+#include "../models/mycalendar.h"
 #include "mycalendardialog.h"
-#include "dataaggregator.h"
+#include "../utilities/dataaggregator.h"
 
 namespace Ui {
 class MyCalendarAddDialog;

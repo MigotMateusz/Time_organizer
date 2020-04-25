@@ -1,7 +1,7 @@
 #include <QMessageBox>
 #include "eventdialog.h"
 #include "ui_eventdialog.h"
-#include "functions.h"
+#include "../utilities/functions.h"
 
 EventDialog::EventDialog(DataAggregator *datamanager, QWidget *parent) :
     QDialog(parent),
@@ -60,6 +60,15 @@ void EventDialog::save_on_click(){
         return;
     }
 
+    if(ui->place_edit->text().length() < 2){
+        QMessageBox::critical(this, "Error", "Invalid place name", QMessageBox::Ok);
+        return;
+    }
+
+    if(ui->description_edit->toPlainText().length() < 2){
+        QMessageBox::critical(this, "Error", "Invalid description", QMessageBox::Ok);
+        return;
+    }
     MyCalendar *cal = new MyCalendar(this->datamanager->get_calendar_from_name(ui->comboBox->currentText().toStdString()));
 
     Event newevent(ui->name_edit->text().toStdString(),ui->description_edit->toPlainText().toStdString(), ui->dateTimeEdit->dateTime(),

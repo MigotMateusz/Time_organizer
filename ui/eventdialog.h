@@ -3,9 +3,9 @@
 
 #include <vector>
 #include <QDialog>
-#include "event.h"
-#include "mycalendar.h"
-#include "dataaggregator.h"
+#include "../models/event.h"
+#include "../models/mycalendar.h"
+#include "../utilities/dataaggregator.h"
 
 namespace Ui {
 class EventDialog;

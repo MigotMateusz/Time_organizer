@@ -5,8 +5,8 @@
 #include <vector>
 #include <QMessageBox>
 #include <QListWidget>
-#include "dataaggregator.h"
-#include "mycalendar.h"
+#include "../utilities/dataaggregator.h"
+#include "../models/mycalendar.h"
 
 
 namespace Ui {

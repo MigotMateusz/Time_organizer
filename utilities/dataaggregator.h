@@ -2,9 +2,9 @@
 #define DATAAGGREGATOR_H
 #include <vector>
 #include <fstream>
-#include "mycalendar.h"
-#include "event.h"
-#include "task.h"
+#include "../models/mycalendar.h"
+#include "../models/event.h"
+#include "../models/task.h"
 
 class DataAggregator
 {

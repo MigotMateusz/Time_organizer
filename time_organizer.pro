@@ -16,41 +16,41 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    agendadialog.cpp \
-    dataaggregator.cpp \
-    event.cpp \
-    eventdialog.cpp \
-    functions.cpp \
-    keyshortcutsdialog.cpp \
+    ui/agendadialog.cpp \
+    utilities/dataaggregator.cpp \
+    models/event.cpp \
+    ui/eventdialog.cpp \
+    utilities/functions.cpp \
+    ui/keyshortcutsdialog.cpp \
     main.cpp \
-    mainwindow.cpp \
-    mycalendar.cpp \
-    mycalendaradddialog.cpp \
-    mycalendardialog.cpp \
-    task.cpp \
-    task_group.cpp
+    ui/mainwindow.cpp \
+    models/mycalendar.cpp \
+    ui/mycalendaradddialog.cpp \
+    ui/mycalendardialog.cpp \
+    models/task.cpp \
+    models/task_group.cpp
 
 HEADERS += \
-    agendadialog.h \
-    dataaggregator.h \
-    event.h \
-    eventdialog.h \
-    functions.h \
-    keyshortcutsdialog.h \
-    mainwindow.h \
-    mycalendar.h \
-    mycalendaradddialog.h \
-    mycalendardialog.h \
-    task.h \
-    task_group.h
+    ui/agendadialog.h \
+    utilities/dataaggregator.h \
+    models/event.h \
+    ui/eventdialog.h \
+    utilities/functions.h \
+    ui/keyshortcutsdialog.h \
+    ui/mainwindow.h \
+    models/mycalendar.h \
+    ui/mycalendaradddialog.h \
+    ui/mycalendardialog.h \
+    models/task.h \
+    models/task_group.h
 
 FORMS += \
-    agendadialog.ui \
-    eventdialog.ui \
-    keyshortcutsdialog.ui \
-    mainwindow.ui \
-    mycalendaradddialog.ui \
-    mycalendardialog.ui
+    ui/agendadialog.ui \
+    ui/eventdialog.ui \
+    ui/keyshortcutsdialog.ui \
+    ui/mainwindow.ui \
+    ui/mycalendaradddialog.ui \
+    ui/mycalendardialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
@@ -58,5 +58,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += \
-    resource.qrc \
-    resources.qrc
+    ui/resources.qrc

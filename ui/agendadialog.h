@@ -2,7 +2,7 @@
 #define AGENDADIALOG_H
 
 #include <QDialog>
-#include "dataaggregator.h"
+#include "../utilities/dataaggregator.h"
 
 namespace Ui {
 class AgendaDialog;
