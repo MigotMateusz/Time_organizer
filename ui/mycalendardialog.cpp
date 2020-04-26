@@ -52,7 +52,7 @@ void MyCalendarDialog::open_MyCalendarDeleteDialog(){
 void MyCalendarDialog::loadMyCalendars(){
     this->ui->listWidget->clear();
     for(auto i : this->datamanager->get_calendars()){
-        QPixmap pixmap(10, 10);
+        QPixmap pixmap(15, 15);
         pixmap.fill(i.getColor());
         this->ui->listWidget->addItem(new QListWidgetItem(QIcon(pixmap),QString(i.getName().c_str())));
     }
