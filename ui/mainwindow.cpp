@@ -13,6 +13,7 @@
 #include "mycalendaradddialog.h"
 #include "agendadialog.h"
 #include "keyshortcutsdialog.h"
+#include "todolistdialog.h"
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -31,10 +32,12 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionEvent_Manager, SIGNAL(triggered()),this, SLOT(open_EventDialog()));
     connect(ui->actionTutorial, SIGNAL(triggered()), this, SLOT(open_github_in_webbrowser()));
     connect(ui->actionKey_shortcuts, SIGNAL(triggered()), this, SLOT(open_keyshortcutDialog()));
-    //connect(ui->calendar, SIGNAL(clicked(QDate)), this, SLOT(open_hoursDialog()));
+    connect(ui->todo_button, SIGNAL(released()), this, SLOT(open_todolist()));
     datamanager = new DataAggregator;
     datamanager->load_MyCalendar_from_database();
     datamanager->load_Event_from_database();
+    datamanager->load_GroupTask_from_database();
+    datamanager->load_Task_from_database();
     this->refresh_dynamic_label();
 }
 
@@ -122,6 +125,11 @@ void MainWindow::open_github_in_webbrowser(){
 
 void MainWindow::open_keyshortcutDialog(){
     KeyShortcutsDialog dialog;
+    dialog.setModal(true);
+    dialog.exec();
+}
+void MainWindow::open_todolist(){
+    TodolistDialog dialog(this->datamanager);
     dialog.setModal(true);
     dialog.exec();
 }

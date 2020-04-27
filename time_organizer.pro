@@ -17,6 +17,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     ui/agendadialog.cpp \
+    ui/todolistdialog.cpp \
     utilities/dataaggregator.cpp \
     models/event.cpp \
     ui/eventdialog.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
 
 HEADERS += \
     ui/agendadialog.h \
+    ui/todolistdialog.h \
     utilities/dataaggregator.h \
     models/event.h \
     ui/eventdialog.h \
@@ -50,7 +52,8 @@ FORMS += \
     ui/keyshortcutsdialog.ui \
     ui/mainwindow.ui \
     ui/mycalendaradddialog.ui \
-    ui/mycalendardialog.ui
+    ui/mycalendardialog.ui \
+    ui/todolistdialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

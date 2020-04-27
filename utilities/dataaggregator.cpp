@@ -1,7 +1,4 @@
 #include <QDate>
-#include <QtSql/QSql>
-#include <QtSql/QSqlDatabase>
-#include <QtSql/QSqlQuery>
 #include <sstream>
 #include <QColor>
 #include <cstdlib>
@@ -11,9 +8,7 @@
 #include "dataaggregator.h"
 
 
-DataAggregator::DataAggregator(){
-
-}
+DataAggregator::DataAggregator(){}
 
 DataAggregator::DataAggregator(const DataAggregator& data){
     for(auto pom : data.events){
@@ -54,6 +49,32 @@ void DataAggregator::load_MyCalendar_from_database(){
     }
     plik.close();
     this->calendars.erase(std::unique(this->calendars.begin(), this->calendars.end()), this->calendars.end());
+}
+void DataAggregator::load_GroupTask_from_database(){
+    std::fstream plik("group_task.txt", std::ios::in);
+    std::string pom_nazwa, pom_color;
+    std::string pom;
+    while(plik){
+        std::getline(plik, pom);
+        unsigned first = pom.find("\"");
+        unsigned last = pom.find_last_of("\"");
+        pom_nazwa = pom.substr(first + 1, last - first - 1);
+        QColor color;
+        std::stringstream ss(pom.substr(last +1, pom.size() - last));
+        //ss << pom_color;
+        char hash;
+        ss >> hash;
+        ss >> pom_color;
+        int r, g, b;
+
+        sscanf(pom_color.c_str(), "%02x%02x%02x", &r, &g, &b);
+        color.setRgb(r,g,b);
+        Task_Group newgroup(pom_nazwa, color);
+        this->TaskGroup.push_back(newgroup);
+        qDebug() << QString::fromStdString(newgroup.get_name());
+    }
+    plik.close();
+    this->TaskGroup.erase(std::unique(this->TaskGroup.begin(), this->TaskGroup.end()), this->TaskGroup.end());
 }
 
 DataAggregator::~DataAggregator(){
@@ -112,11 +133,39 @@ void DataAggregator::load_Event_from_database(){
 }
 
 void DataAggregator::load_Task_from_database(){
-    std::fstream plik("mycalendars.txt", std::ios::in);
-    if(!plik){
-        while(plik){
-            break;
+    std::fstream plik("tasks.txt", std::ios::in);
+    std::string pom;
+    std::string pom_nazwa, pom_group, pom_check, pom_year, pom_month, pom_day;
+    while(plik){
+        int index = 0;
+        std::getline(plik, pom);
+        unsigned first = pom.find("\"", index);
+        unsigned last = pom.find("\"", index + 1);
+        pom_nazwa = pom.substr(first + 1, last - first - 1);
+
+        index = last + 2;
+        first = pom.find("\"", index);
+        last = pom.find("\"", index + 1);
+        pom_group = pom.substr(first + 1, last - first - 1);
+        std::stringstream ss(pom.substr(last +1, pom.size() - last));
+        ss>>pom_check;
+        bool check;
+        if(pom_check=="yes"){
+            ss>>pom_check>>pom_year>>pom_month>>pom_day;
+            check = true;
         }
+        else
+            check = false;
+        Task_Group *group;
+        for(auto p : this->TaskGroup){
+            if(p.get_name() == pom_group){
+               group = new Task_Group(p);
+               break;
+            }
+        }
+        Task newtask(pom_nazwa, group, check, QDate(atoi(pom_year.c_str()), atoi(pom_month.c_str()), atoi(pom_day.c_str())));
+        //qDebug() << QString::fromStdString(newtask.get_name());
+        this->tasks.push_back(newtask);
     }
     plik.close();
 }
@@ -155,29 +204,33 @@ void DataAggregator::load_Event_to_database(){
     }
     plik1.close();
 }
+void DataAggregator::load_GroupTask_to_database(){
+    std::fstream plik;
+    plik.open("group_task.txt", std::ios::out);
+    for(int i = 0; i < int(this->TaskGroup.size()); i++){
+        plik<<"\""<<this->TaskGroup[i].get_name()<<"\" "<<this->TaskGroup[i].get_color().name().toStdString();
 
-std::vector<MyCalendar> DataAggregator::get_calendars(){
-    return this->calendars;
+        if(i != int(this->TaskGroup.size())-1)
+            plik<<std::endl;
+    }
+    plik.close();
 }
 
-std::vector<Event> DataAggregator::get_events(){
-    return this->events;
-}
+void DataAggregator::load_Task_to_database(){
+    std::fstream plik;
+    plik.open("tasks.txt", std::ios::out);
+    for(int i = 0; i < int(this->tasks.size()); i++){
+        plik<<"\""<<this->tasks[i].get_name()<<"\" \""<<this->tasks[i].get_TaskGroup()->get_name()<<"\" ";
+        if(tasks[i].is_deadline()){
+            plik<<"yes "<<this->tasks[i].get_date().year()<<" "<<this->tasks[i].get_date().month()<<" "<<this->tasks[i].get_date().day();
+        }else{
+            plik<<"no";
+        }
 
-std::vector<Task> DataAggregator::get_tasks(){
-    return this->tasks;
-}
-
-void DataAggregator::add_to_calendars(MyCalendar newcalendar){
-    this->calendars.push_back(newcalendar);
-}
-
-void DataAggregator::add_to_events(Event newevent){
-    this->events.push_back(newevent);
-}
-
-void DataAggregator::add_to_tasks(Task newtask){
-    this->tasks.push_back(newtask);
+        if(i != int(this->tasks.size())-1)
+            plik<<std::endl;
+    }
+    plik.close();
 }
 
 void DataAggregator::erase_an_element_from_calendars(QString delete_this){
@@ -198,4 +251,32 @@ void DataAggregator::erase_an_element_from_events(QString delete_this){
         index++;
     }
     this->events.erase(events.begin() + index);
+}
+
+std::vector<MyCalendar> DataAggregator::get_calendars(){
+    return this->calendars;
+}
+
+std::vector<Event> DataAggregator::get_events(){
+    return this->events;
+}
+
+std::vector<Task> DataAggregator::get_tasks(){
+    return this->tasks;
+}
+std::vector<Task_Group> DataAggregator::get_TaskGroup(){
+    return this->TaskGroup;
+}
+void DataAggregator::add_to_calendars(MyCalendar newcalendar){
+    this->calendars.push_back(newcalendar);
+}
+
+void DataAggregator::add_to_events(Event newevent){
+    this->events.push_back(newevent);
+}
+void DataAggregator::add_to_tasks(Task newtask){
+    this->tasks.push_back(newtask);
+}
+void DataAggregator::add_to_TaskGroup(Task_Group newtaskgroup){
+    this->TaskGroup.push_back(newtaskgroup);
 }

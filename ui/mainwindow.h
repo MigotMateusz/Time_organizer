@@ -29,6 +29,7 @@ public slots:
     void open_agendaDialog();
     void open_github_in_webbrowser();
     void open_keyshortcutDialog();
+    void open_todolist();
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();

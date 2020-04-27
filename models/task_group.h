@@ -2,17 +2,21 @@
 #define TASK_GROUP_H
 
 #include <string>
-#include <vector>
-#include "task.h"
+#include <QColor>
 
 class Task_Group
 {
 private:
     std::string name_of_the_TaskGroup;
-    std::vector<Task> tasks;
+    QColor color;
 
 public:
     Task_Group();
+    Task_Group(const std::string&, const QColor&);
+    std::string get_name();
+    QColor get_color();
+
+    bool operator==(Task_Group &grouptask);
 };
 
 #endif // TASK_GROUP_H
