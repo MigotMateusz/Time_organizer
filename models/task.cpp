@@ -19,3 +19,6 @@ bool Task::is_deadline(){
 QDate Task::get_date(){
     return this->date;
 }
+bool Task::operator==(Task &task){
+    return (this->name == task.get_name());
+}

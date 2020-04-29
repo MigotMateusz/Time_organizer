@@ -164,10 +164,12 @@ void DataAggregator::load_Task_from_database(){
             }
         }
         Task newtask(pom_nazwa, group, check, QDate(atoi(pom_year.c_str()), atoi(pom_month.c_str()), atoi(pom_day.c_str())));
-        //qDebug() << QString::fromStdString(newtask.get_name());
+        qDebug() << "Adding: "<<QString::fromStdString(newtask.get_name());
         this->tasks.push_back(newtask);
     }
     plik.close();
+    this->tasks.erase(std::unique(this->tasks.begin(), this->tasks.end()), this->tasks.end());
+
 }
 
 void DataAggregator::load_MyCalendar_to_database(){
@@ -260,6 +262,15 @@ void DataAggregator::erase_an_element_from_taskgroups(QString delete_this){
         index++;
     }
     this->TaskGroup.erase(TaskGroup.begin() + index);
+}
+void DataAggregator::erase_an_element_from_tasks(QString delete_this){
+    int index = 0;
+    for(auto ele : this->tasks){
+        if(ele.get_name() == delete_this.toStdString())
+            break;
+        index++;
+    }
+    this->tasks.erase(tasks.begin() + index);
 }
 std::vector<MyCalendar> DataAggregator::get_calendars(){
     return this->calendars;

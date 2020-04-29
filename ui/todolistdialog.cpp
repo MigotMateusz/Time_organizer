@@ -3,9 +3,11 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QBrush>
+#include <QMessageBox>
 #include <QDebug>
 #include "todolistdialog.h"
 #include "taskgroupdialog.h"
+#include "taskmanager.h"
 #include "edittaskgroupdialog.h"
 #include "ui_todolistdialog.h"
 
@@ -16,6 +18,9 @@ TodolistDialog::TodolistDialog(DataAggregator *dmanager, QWidget *parent) :
     ui->setupUi(this);
     this->datamanager = dmanager;
     this->refresh_left_side();
+    connect(ui->delete_2, SIGNAL(released()), this, SLOT(delete_selected_task()));
+    connect(ui->edit, SIGNAL(released()), this, SLOT(edit_selected_task()));
+    connect(ui->edit, SIGNAL(released()), this, SLOT(add_task()));
     for(auto i : this->datamanager->get_tasks()){
         this->ui->listWidget->addItem(new QListWidgetItem(QString(i.get_name().c_str())));
     }
@@ -96,8 +101,40 @@ void TodolistDialog::open_TaskGroup_dialog(){
     dialog.setModal(true);
     dialog.exec();
 }
+
 void TodolistDialog::open_EditTaskGroup_dialog(){
     EditTaskGroupDialog dialog(this);
     dialog.setModal(true);
     dialog.exec();
+}
+
+void TodolistDialog::edit_selected_task(){
+    TaskManager dialog(this);
+    dialog.setModal(true);
+    dialog.exec();
+}
+
+void TodolistDialog::delete_selected_task(){
+        if(this->ui->listWidget->selectedItems().size() == 0){
+            QMessageBox::critical(this, "Error", "No Task selected!", QMessageBox::Ok);
+            return;
+        }
+        QString selected_category = this->ui->listWidget->selectedItems().at(0)->text();
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Confirm", QString("Do you want to delete ") + selected_category + QString("?"),
+                                      QMessageBox::Yes|QMessageBox::No);
+        if(reply == QMessageBox::Yes){
+            this->datamanager->erase_an_element_from_tasks(selected_category);
+            this->datamanager->load_Task_to_database();
+            //this->refresh_left_side();
+            ui->listWidget->clear();
+            for(auto i : this->datamanager->get_tasks()){
+               this->ui->listWidget->addItem(new QListWidgetItem(QString(i.get_name().c_str())));
+            }
+        }
+
+}
+
+void TodolistDialog::add_task(){
+
 }

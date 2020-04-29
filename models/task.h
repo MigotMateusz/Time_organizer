@@ -19,6 +19,7 @@ public:
     Task_Group* get_TaskGroup();
     bool is_deadline();
     QDate get_date();
+    bool operator==(Task &task);
 };
 
 #endif // TASK_H

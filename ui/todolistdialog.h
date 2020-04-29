@@ -19,6 +19,9 @@ public:
 public slots:
     void open_TaskGroup_dialog();
     void open_EditTaskGroup_dialog();
+    void edit_selected_task();
+    void delete_selected_task();
+    void add_task();
 private:
     Ui::TodolistDialog *ui;
 public:

@@ -19,6 +19,7 @@ SOURCES += \
     ui/agendadialog.cpp \
     ui/edittaskgroupdialog.cpp \
     ui/taskgroupdialog.cpp \
+    ui/taskmanager.cpp \
     ui/todolistdialog.cpp \
     utilities/dataaggregator.cpp \
     models/event.cpp \
@@ -37,6 +38,7 @@ HEADERS += \
     ui/agendadialog.h \
     ui/edittaskgroupdialog.h \
     ui/taskgroupdialog.h \
+    ui/taskmanager.h \
     ui/todolistdialog.h \
     utilities/dataaggregator.h \
     models/event.h \
@@ -59,6 +61,7 @@ FORMS += \
     ui/mycalendaradddialog.ui \
     ui/mycalendardialog.ui \
     ui/taskgroupdialog.ui \
+    ui/taskmanager.ui \
     ui/todolistdialog.ui
 
 # Default rules for deployment.
