@@ -15,9 +15,13 @@ class TodolistDialog : public QDialog
 public:
     explicit TodolistDialog(DataAggregator* dmanager, QWidget *parent = nullptr);
     ~TodolistDialog();
-    void refresh();
+    void refresh_left_side();
+public slots:
+    void open_TaskGroup_dialog();
+    void open_EditTaskGroup_dialog();
 private:
     Ui::TodolistDialog *ui;
+public:
     DataAggregator *datamanager;
 };
 

@@ -57,6 +57,16 @@
    <property name="frameShadow">
     <enum>QFrame::Raised</enum>
    </property>
+   <widget class="QListWidget" name="listWidget">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>60</y>
+      <width>611</width>
+      <height>641</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="Line" name="line_2">
    <property name="geometry">
@@ -77,7 +87,7 @@
      <x>0</x>
      <y>160</y>
      <width>301</width>
-     <height>51</height>
+     <height>411</height>
     </rect>
    </property>
    <property name="frameShape">

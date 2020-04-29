@@ -252,7 +252,15 @@ void DataAggregator::erase_an_element_from_events(QString delete_this){
     }
     this->events.erase(events.begin() + index);
 }
-
+void DataAggregator::erase_an_element_from_taskgroups(QString delete_this){
+    int index = 0;
+    for(auto ele : this->TaskGroup){
+        if(ele.get_name() == delete_this.toStdString())
+            break;
+        index++;
+    }
+    this->TaskGroup.erase(TaskGroup.begin() + index);
+}
 std::vector<MyCalendar> DataAggregator::get_calendars(){
     return this->calendars;
 }

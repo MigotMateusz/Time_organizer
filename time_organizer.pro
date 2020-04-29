@@ -17,6 +17,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     ui/agendadialog.cpp \
+    ui/edittaskgroupdialog.cpp \
+    ui/taskgroupdialog.cpp \
     ui/todolistdialog.cpp \
     utilities/dataaggregator.cpp \
     models/event.cpp \
@@ -33,6 +35,8 @@ SOURCES += \
 
 HEADERS += \
     ui/agendadialog.h \
+    ui/edittaskgroupdialog.h \
+    ui/taskgroupdialog.h \
     ui/todolistdialog.h \
     utilities/dataaggregator.h \
     models/event.h \
@@ -48,11 +52,13 @@ HEADERS += \
 
 FORMS += \
     ui/agendadialog.ui \
+    ui/edittaskgroupdialog.ui \
     ui/eventdialog.ui \
     ui/keyshortcutsdialog.ui \
     ui/mainwindow.ui \
     ui/mycalendaradddialog.ui \
     ui/mycalendardialog.ui \
+    ui/taskgroupdialog.ui \
     ui/todolistdialog.ui
 
 # Default rules for deployment.
