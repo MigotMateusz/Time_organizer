@@ -149,13 +149,7 @@ void DataAggregator::load_Task_from_database(){
         pom_group = pom.substr(first + 1, last - first - 1);
         std::stringstream ss(pom.substr(last +1, pom.size() - last));
         ss>>pom_check;
-        bool check;
-        if(pom_check=="yes"){
-            ss>>pom_check>>pom_year>>pom_month>>pom_day;
-            check = true;
-        }
-        else
-            check = false;
+        bool check = false;
         Task_Group *group;
         for(auto p : this->TaskGroup){
             if(p.get_name() == pom_group){
@@ -163,9 +157,21 @@ void DataAggregator::load_Task_from_database(){
                break;
             }
         }
-        Task newtask(pom_nazwa, group, check, QDate(atoi(pom_year.c_str()), atoi(pom_month.c_str()), atoi(pom_day.c_str())));
-        qDebug() << "Adding: "<<QString::fromStdString(newtask.get_name());
+        if(pom_check == "yes"){
+            ss>>pom_year>>pom_month>>pom_day;
+            qDebug() << "year: "<<QString::fromStdString(pom_year);
+            check = true;
+        }
+        else
+            check = false;
+        if(check){
+            Task newtask(pom_nazwa, group, check, QDate(atoi(pom_year.c_str()), atoi(pom_month.c_str()), atoi(pom_day.c_str())));
         this->tasks.push_back(newtask);
+        }
+        else{
+            Task newtask(pom_nazwa, group, check, QDate(0,0,0));
+            this->tasks.push_back(newtask);
+        }
     }
     plik.close();
     this->tasks.erase(std::unique(this->tasks.begin(), this->tasks.end()), this->tasks.end());

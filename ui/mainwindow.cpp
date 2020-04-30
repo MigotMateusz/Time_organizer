@@ -5,6 +5,7 @@
 #include <QDesktopServices>
 #include <QCalendarWidget>
 #include <QToolTip>
+#include <QDebug>
 #include <QUrl>
 #include <functional>
 #include "mainwindow.h"
@@ -110,8 +111,25 @@ void MainWindow::refresh_dynamic_label(){
                 ui->dynamic_label->addItem(single_event);
             }
         }
-    }
+        naglowek = false;
 
+    }
+    bool naglowek = false;
+    for(auto pom : this->datamanager->get_tasks()){
+        if(pom.get_date().day() == ui->calendar->selectedDate().day() &&
+                pom.get_date().month() == ui->calendar->selectedDate().month()){
+            qDebug() << "XD: " << pom.get_name().c_str();
+
+            if(naglowek==false){
+                ui->dynamic_label->addItem(new QListWidgetItem());
+                ui->dynamic_label->addItem(new QListWidgetItem(QString("TASKS: ")));
+                naglowek = true;
+            }
+            QListWidgetItem *single_task = new QListWidgetItem(QString(pom.get_name().c_str()));
+            ui->dynamic_label->addItem(single_task);
+            single_task->setBackground(pom.get_TaskGroup()->get_color());
+        }
+    }
 }
 void MainWindow::open_agendaDialog(){
     AgendaDialog agenda(datamanager);
