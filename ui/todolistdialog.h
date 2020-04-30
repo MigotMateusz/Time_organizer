@@ -22,6 +22,10 @@ public slots:
     void edit_selected_task();
     void delete_selected_task();
     void add_task();
+    void inbox_view();
+    void today_view();
+    void sevendays_view();
+    void taskgroup_view(Task_Group group);
 private:
     Ui::TodolistDialog *ui;
 public:

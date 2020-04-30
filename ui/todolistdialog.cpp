@@ -18,6 +18,7 @@ TodolistDialog::TodolistDialog(DataAggregator *dmanager, QWidget *parent) :
     ui->setupUi(this);
     this->datamanager = dmanager;
     this->refresh_left_side();
+    inbox_view();
     connect(ui->delete_2, SIGNAL(released()), this, SLOT(delete_selected_task()));
     connect(ui->edit, SIGNAL(released()), this, SLOT(edit_selected_task()));
     connect(ui->add, SIGNAL(released()), this, SLOT(add_task()));
@@ -30,7 +31,7 @@ TodolistDialog::~TodolistDialog()
 void TodolistDialog::refresh_left_side(){
     QVBoxLayout *layoutleft1 = new QVBoxLayout(ui->frameleft);
     QString tab[] = {"📮 Inbox", "📆 Today", "📅 Next 7 days"};
-
+    int index = 1;
     for(auto p : tab){
        QHBoxLayout *layout = new QHBoxLayout();
        layoutleft1->addLayout(layout);
@@ -41,6 +42,13 @@ void TodolistDialog::refresh_left_side(){
        button->setContentsMargins(10,0,0,0);
        button->setFlat(true);
        layout->addWidget(button);
+       if(index == 1)
+           connect(button, SIGNAL(released()), this, SLOT(inbox_view()));
+       else if(index == 2)
+           connect(button, SIGNAL(released()), this, SLOT(today_view()));
+       else
+           connect(button, SIGNAL(released()), this, SLOT(sevendays_view()));
+       index++;
     }
     QVBoxLayout *layoutleft2 = new QVBoxLayout(ui->frameleft2);
     QHBoxLayout *layout = new QHBoxLayout();
@@ -63,12 +71,14 @@ void TodolistDialog::refresh_left_side(){
         button->setText(p.get_name().c_str());
         button->setFont(QFont(this->font().family(), 12));
         button->setFlat(true);
+
         pixmap.fill(p.get_color());
         QLabel *pixlabel = new QLabel();
         pixlabel->setPixmap(pixmap);
         pixlabel->setContentsMargins(50,0,0,0);
         layout->addWidget(pixlabel);
         layout->addWidget(button);
+        connect(button, SIGNAL(released()), this, SLOT(taskgroup_view()));
     }
     QHBoxLayout *layout1 = new QHBoxLayout();
     ui->frameleft2->resize(300, h + 40);
@@ -150,4 +160,41 @@ void TodolistDialog::add_task(){
     TaskManager dialog(this, false);
     dialog.setModal(true);
     dialog.exec();
+}
+void TodolistDialog::inbox_view(){
+    ui->listWidget->clear();
+    QString string;
+    for(auto i : this->datamanager->get_tasks()){
+        QListWidgetItem* single_task = new QListWidgetItem(QString(i.get_name().c_str()));
+        single_task->setBackground(i.get_TaskGroup()->get_color());
+        this->ui->listWidget->addItem(single_task);
+    }
+    ui->label->setText("Inbox");
+}
+void TodolistDialog::today_view(){
+    ui->listWidget->clear();
+    for(auto i : this->datamanager->get_tasks()){
+        if(i.get_date() == QDate::currentDate()){
+            QListWidgetItem* single_task = new QListWidgetItem(QString(i.get_name().c_str()));
+            single_task->setBackground(i.get_TaskGroup()->get_color());
+            this->ui->listWidget->addItem(single_task);
+    }
+    }
+    ui->label->setText("Today");
+}
+void TodolistDialog::sevendays_view(){
+    ui->listWidget->clear();
+    ui->label->setText("Next 7 Days");
+    for(auto i : this->datamanager->get_tasks()){
+        if((i.get_date().day() >= QDate::currentDate().day() && i.get_date().day() <= QDate::currentDate().day() + 7) &&
+                i.get_date().month() == QDate::currentDate().month()){
+            QListWidgetItem* single_task = new QListWidgetItem(QString(i.get_name().c_str()));
+            single_task->setBackground(i.get_TaskGroup()->get_color());
+            this->ui->listWidget->addItem(single_task);
+    }
+    }
+}
+void TodolistDialog::taskgroup_view(Task_Group group){
+    ui->listWidget->clear();
+    //ui->label->setText(QString::fromStdString(group.get_name()));
 }
