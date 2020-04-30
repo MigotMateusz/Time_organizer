@@ -2,13 +2,13 @@
 
 Task::Task(){}
 
-Task::Task(const std::string& n, Task_Group* g, const bool& is, const QDate& d):name(n), group(g), deadline(is), date(d){}
+Task::Task(const std::string& n, std::shared_ptr<Task_Group> g, const bool& is, const QDate& d):name(n), group(g), deadline(is), date(d){}
 
 std::string Task::get_name(){
     return this->name;
 }
 
-Task_Group* Task::get_TaskGroup(){
+std::shared_ptr<Task_Group> Task::get_TaskGroup(){
     return this->group;
 }
 

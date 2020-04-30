@@ -14,6 +14,7 @@ private:
 public:
     MyCalendar();
     MyCalendar(std::string, QColor);
+    MyCalendar(MyCalendar*);
     MyCalendar(const MyCalendar &mycalendar);
     ~MyCalendar();
 
@@ -21,6 +22,7 @@ public:
     QColor getColor() const;
 
     bool operator==(MyCalendar &mycalendar);
+    bool operator<(MyCalendar &mycalendar);
 };
 
 #endif // MYCALENDAR_H

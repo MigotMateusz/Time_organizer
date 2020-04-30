@@ -69,7 +69,7 @@ void EventDialog::save_on_click(){
         QMessageBox::critical(this, "Error", "Invalid description", QMessageBox::Ok);
         return;
     }
-    MyCalendar *cal = new MyCalendar(this->datamanager->get_calendar_from_name(ui->comboBox->currentText().toStdString()));
+    std::shared_ptr<MyCalendar> cal = std::make_shared<MyCalendar>(new MyCalendar(this->datamanager->get_calendar_from_name(ui->comboBox->currentText().toStdString())));
 
     Event newevent(ui->name_edit->text().toStdString(),ui->description_edit->toPlainText().toStdString(), ui->dateTimeEdit->dateTime(),
                    cal, ui->place_edit->text().toStdString());

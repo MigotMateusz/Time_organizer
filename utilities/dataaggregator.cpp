@@ -2,7 +2,9 @@
 #include <sstream>
 #include <QColor>
 #include <cstdlib>
+#include <memory>
 #include <QDebug>
+#include <algorithm>
 #include <QMessageBox>
 #include "../ui/mycalendardialog.h"
 #include "dataaggregator.h"
@@ -49,6 +51,9 @@ void DataAggregator::load_MyCalendar_from_database(){
     }
     plik.close();
     this->calendars.erase(std::unique(this->calendars.begin(), this->calendars.end()), this->calendars.end());
+    std::sort(this->calendars.begin(), this->calendars.end());
+    if(std::is_sorted(this->calendars.begin(), this->calendars.end()))
+        qDebug() << "MyCalendars sorted!";
 }
 void DataAggregator::load_GroupTask_from_database(){
     std::fstream plik("group_task.txt", std::ios::in);
@@ -89,7 +94,7 @@ void DataAggregator::load_Event_from_database(){
     std::string pom;
     while(plik){
         int index = 0;
-        MyCalendar *cal;
+        std::shared_ptr<MyCalendar> cal;
         //plik>>pom_nazwa>>pom_desc>>pom_year>>pom_month>>pom_day>>pom_hours>>pom_minutes>>pom_calendar>>pom_place;
         //Event_add_1 Event_add_1_description 2020 4 19 11 50 praca home
         std::getline(plik, pom);
@@ -119,7 +124,7 @@ void DataAggregator::load_Event_from_database(){
         pom_place = pom.substr(first + 1, last - first - 1);
         for(auto everycalendar : this->calendars){
             if(everycalendar.getName() == pom_calendar){
-               cal = new MyCalendar(everycalendar);
+               cal = std::make_shared<MyCalendar>(new MyCalendar(everycalendar));
                break;
             }
         }
@@ -150,10 +155,10 @@ void DataAggregator::load_Task_from_database(){
         std::stringstream ss(pom.substr(last +1, pom.size() - last));
         ss>>pom_check;
         bool check = false;
-        Task_Group *group;
+        std::shared_ptr<Task_Group> group;
         for(auto p : this->TaskGroup){
             if(p.get_name() == pom_group){
-               group = new Task_Group(p);
+               group = std::make_shared<Task_Group>(new Task_Group(p));
                break;
             }
         }

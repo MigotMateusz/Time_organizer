@@ -13,6 +13,7 @@ private:
 public:
     Task_Group();
     Task_Group(const std::string&, const QColor&);
+    Task_Group(Task_Group*);
     std::string get_name();
     QColor get_color();
 

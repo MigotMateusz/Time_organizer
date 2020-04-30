@@ -8,7 +8,7 @@ Event::Event(){
     this->place = "Home";
 }
 
-Event::Event(std::string n,std::string d, QDateTime date, MyCalendar *cal, std::string p){
+Event::Event(std::string n,std::string d, QDateTime date, std::shared_ptr<MyCalendar> cal, std::string p){
     this->name_of_the_event = n;
     this->description = d;
     this->date = date;
@@ -44,7 +44,7 @@ QDateTime Event::get_date() const{
     return date;
 }
 
-MyCalendar* Event::getcalendar() const{
+std::shared_ptr<MyCalendar>  Event::getcalendar() const{
     return calendar;
 }
 

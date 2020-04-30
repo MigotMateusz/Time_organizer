@@ -45,7 +45,7 @@ void TaskManager::edit(){
         return;
     }
 
-    Task_Group *group = new Task_Group(this->datamanager->get_TaskGroup_from_name(ui->comboBox->currentText().toStdString()));
+    std::shared_ptr<Task_Group> group = std::make_shared<Task_Group>(new Task_Group(this->datamanager->get_TaskGroup_from_name(ui->comboBox->currentText().toStdString())));
     if(ui->checkBox->isChecked()){
         Task newtask(ui->name_edit->text().toStdString(), group, true, ui->dateEdit->date());
         this->datamanager->add_to_tasks(newtask);
@@ -74,7 +74,7 @@ void TaskManager::add(){
     }
 
     //MyCalendar *cal = new MyCalendar(this->datamanager->get_calendar_from_name(ui->comboBox->currentText().toStdString()));
-    Task_Group *group = new Task_Group(this->datamanager->get_TaskGroup_from_name(ui->comboBox->currentText().toStdString()));
+    std::shared_ptr<Task_Group>group = std::make_shared<Task_Group>(new Task_Group(this->datamanager->get_TaskGroup_from_name(ui->comboBox->currentText().toStdString())));
     //Event newevent(ui->name_edit->text().toStdString(),ui->description_edit->toPlainText().toStdString(), ui->dateTimeEdit->dateTime(),
       //             cal, ui->place_edit->text().toStdString());
     if(ui->checkBox->isChecked()){
