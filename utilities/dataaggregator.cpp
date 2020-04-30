@@ -190,7 +190,13 @@ MyCalendar DataAggregator::get_calendar_from_name(std::string name){
     }
     return MyCalendar();
 }
-
+Task_Group DataAggregator::get_TaskGroup_from_name(std::string name){
+    for(auto pom : this->TaskGroup){
+        if(pom.get_name() == name)
+            return pom;
+    }
+    return Task_Group();
+}
 void DataAggregator::load_Event_to_database(){
     std::fstream plik1;
     plik1.open("events.txt", std::ios::out);

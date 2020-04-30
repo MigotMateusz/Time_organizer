@@ -20,10 +20,7 @@ TodolistDialog::TodolistDialog(DataAggregator *dmanager, QWidget *parent) :
     this->refresh_left_side();
     connect(ui->delete_2, SIGNAL(released()), this, SLOT(delete_selected_task()));
     connect(ui->edit, SIGNAL(released()), this, SLOT(edit_selected_task()));
-    connect(ui->edit, SIGNAL(released()), this, SLOT(add_task()));
-    for(auto i : this->datamanager->get_tasks()){
-        this->ui->listWidget->addItem(new QListWidgetItem(QString(i.get_name().c_str())));
-    }
+    connect(ui->add, SIGNAL(released()), this, SLOT(add_task()));
 }
 
 TodolistDialog::~TodolistDialog()
@@ -95,6 +92,10 @@ void TodolistDialog::refresh_left_side(){
     layoutleft2->addLayout(layoutbuttonedit);
     layoutbuttonedit->addWidget(editbutton);
     connect(editbutton, SIGNAL(released()), this, SLOT(open_EditTaskGroup_dialog()));
+    ui->listWidget->clear();
+    for(auto i : this->datamanager->get_tasks()){
+       this->ui->listWidget->addItem(new QListWidgetItem(QString(i.get_name().c_str())));
+    }
 }
 void TodolistDialog::open_TaskGroup_dialog(){
     TaskGroupDialog dialog(this);
@@ -109,11 +110,21 @@ void TodolistDialog::open_EditTaskGroup_dialog(){
 }
 
 void TodolistDialog::edit_selected_task(){
-    TaskManager dialog(this);
-    dialog.setModal(true);
-    dialog.exec();
-}
+    if(this->ui->listWidget->selectedItems().size() == 0){
+        QMessageBox::critical(this, "Error", "No Task selected!", QMessageBox::Ok);
+        return;
+    }
+    QString selected_category = this->ui->listWidget->selectedItems().at(0)->text();
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::question(this, "Confirm", QString("Do you want to edit ") + selected_category + QString("?"),
+                                  QMessageBox::Yes|QMessageBox::No);
+    if(reply == QMessageBox::Yes){
+        TaskManager dialog(this, true,this->ui->listWidget->selectedItems().at(0)->text());
+        dialog.setModal(true);
+        dialog.exec();
 
+    }
+}
 void TodolistDialog::delete_selected_task(){
         if(this->ui->listWidget->selectedItems().size() == 0){
             QMessageBox::critical(this, "Error", "No Task selected!", QMessageBox::Ok);
@@ -136,5 +147,7 @@ void TodolistDialog::delete_selected_task(){
 }
 
 void TodolistDialog::add_task(){
-
+    TaskManager dialog(this, false);
+    dialog.setModal(true);
+    dialog.exec();
 }

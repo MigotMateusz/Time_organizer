@@ -13,12 +13,18 @@ class TaskManager : public QDialog
     Q_OBJECT
 
 public:
-    explicit TaskManager(TodolistDialog *dialog,QWidget *parent = nullptr);
+    explicit TaskManager(TodolistDialog *dialog,bool edit, QString editing="", QWidget *parent = nullptr);
     ~TaskManager();
 
 private:
     Ui::TaskManager *ui;
     DataAggregator *datamanager;
+    TodolistDialog *dialog;
+    QString name_for_edit;
+public slots:
+    void edit();
+    void add();
+    void date_enable();
 };
 
 #endif // TASKMANAGER_H

@@ -20,6 +20,7 @@ public:
     ~DataAggregator();
 
     MyCalendar get_calendar_from_name(std::string name);
+    Task_Group get_TaskGroup_from_name(std::string name);
     std::vector<MyCalendar> get_calendars();
     std::vector<Event> get_events();
     std::vector<Task> get_tasks();
