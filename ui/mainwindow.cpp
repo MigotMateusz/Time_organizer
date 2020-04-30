@@ -35,10 +35,31 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->actionKey_shortcuts, SIGNAL(triggered()), this, SLOT(open_keyshortcutDialog()));
     connect(ui->todo_button, SIGNAL(released()), this, SLOT(open_todolist()));
     datamanager = new DataAggregator;
-    datamanager->load_MyCalendar_from_database();
-    datamanager->load_Event_from_database();
-    datamanager->load_GroupTask_from_database();
-    datamanager->load_Task_from_database();
+    try {
+        datamanager->load_MyCalendar_from_database();
+
+    } catch (std::invalid_argument& e) {
+        QMessageBox::critical(this, "Error", e.what() , QMessageBox::Ok);
+        return;
+    }
+    try {
+        datamanager->load_Event_from_database();
+    } catch (std::invalid_argument& e) {
+        QMessageBox::critical(this, "Error", e.what() , QMessageBox::Ok);
+        return;
+    }
+    try {
+        datamanager->load_GroupTask_from_database();
+    } catch (std::invalid_argument& e) {
+        QMessageBox::critical(this, "Error", e.what() , QMessageBox::Ok);
+        return;
+    }
+    try {
+        datamanager->load_Task_from_database();
+    } catch (std::invalid_argument& e) {
+        QMessageBox::critical(this, "Error", e.what() , QMessageBox::Ok);
+        return;
+    }
     this->refresh_dynamic_label();
 }
 

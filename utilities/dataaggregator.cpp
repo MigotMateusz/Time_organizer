@@ -4,6 +4,7 @@
 #include <cstdlib>
 #include <memory>
 #include <QDebug>
+#include <stdexcept>
 #include <algorithm>
 #include <QMessageBox>
 #include "../ui/mycalendardialog.h"
@@ -30,6 +31,8 @@ void DataAggregator::load_MyCalendar_from_database(){
     std::fstream plik("mycalendars.txt", std::ios::in);
     std::string pom_nazwa, pom_color;
     std::string pom;
+    if(!plik)
+        throw std::invalid_argument("Program couldn't load MyCalendar Data from file! Program will not be executed");
     while(plik){
         //plik>>pom_nazwa>>pom_color;
         std::getline(plik, pom);
@@ -59,6 +62,8 @@ void DataAggregator::load_GroupTask_from_database(){
     std::fstream plik("group_task.txt", std::ios::in);
     std::string pom_nazwa, pom_color;
     std::string pom;
+    if(!plik)
+        throw std::invalid_argument("Program couldn't load GroupTask Data from file! Program will not be executed");
     while(plik){
         std::getline(plik, pom);
         unsigned first = pom.find("\"");
@@ -92,6 +97,8 @@ void DataAggregator::load_Event_from_database(){
     std::string pom_nazwa, pom_desc, pom_year, pom_month, pom_day, pom_calendar, pom_place;
     std::string pom_hours, pom_minutes, pom_seconds;
     std::string pom;
+    if(!plik)
+        throw std::invalid_argument("Program couldn't load Event Data from file! Program will not be executed");
     while(plik){
         int index = 0;
         std::shared_ptr<MyCalendar> cal;
@@ -141,6 +148,8 @@ void DataAggregator::load_Task_from_database(){
     std::fstream plik("tasks.txt", std::ios::in);
     std::string pom;
     std::string pom_nazwa, pom_group, pom_check, pom_year, pom_month, pom_day;
+    if(!plik)
+        throw std::invalid_argument("Program couldn't load Task Data from file! Program will not be executed");
     while(plik){
         int index = 0;
         std::getline(plik, pom);

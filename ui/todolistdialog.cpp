@@ -88,7 +88,6 @@ void TodolistDialog::refresh_left_side(){
     label1->setFont(QFont(this->font().family(), 14));
     label1->setMinimumHeight(40);
     label1->setFlat(true);
-    connect(label1, SIGNAL(released()), this, SLOT(open_TaskGroup_dialog()));
     layout1->addWidget(label1);
 
     QPushButton *editbutton = new QPushButton();
