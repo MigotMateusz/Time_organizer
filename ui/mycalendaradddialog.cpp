@@ -1,7 +1,8 @@
-#include "mycalendaradddialog.h"
-#include "ui_mycalendaradddialog.h"
 #include <QColor>
 #include <QMessageBox>
+#include "mycalendaradddialog.h"
+#include "ui_mycalendaradddialog.h"
+
 
 MyCalendarAddDialog::MyCalendarAddDialog(MyCalendarDialog *dialog, QWidget *parent) :
     QDialog(parent),

@@ -12,15 +12,16 @@ class TaskManager : public QDialog
 {
     Q_OBJECT
 
-public:
-    explicit TaskManager(TodolistDialog *dialog,bool edit, QString editing="", QWidget *parent = nullptr);
-    ~TaskManager();
-
 private:
     Ui::TaskManager *ui;
     DataAggregator *datamanager;
     TodolistDialog *dialog;
     QString name_for_edit;
+
+public:
+    explicit TaskManager(TodolistDialog *dialog,bool edit, QString editing="", QWidget *parent = nullptr);
+    ~TaskManager();
+
 public slots:
     void edit();
     void add();

@@ -19,6 +19,7 @@ class MyCalendarDialog : public QDialog
 
 private:
     Ui::MyCalendarDialog *ui;
+
 public slots:
     void open_MyCalendarDeleteDialog();
     void open_MyCalendarAddDialog();

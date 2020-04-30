@@ -101,10 +101,7 @@ void TodolistDialog::refresh_left_side(){
     layoutleft2->addLayout(layoutbuttonedit);
     layoutbuttonedit->addWidget(editbutton);
     connect(editbutton, SIGNAL(released()), this, SLOT(open_EditTaskGroup_dialog()));
-    ui->listWidget->clear();
-    for(auto i : this->datamanager->get_tasks()){
-       this->ui->listWidget->addItem(new QListWidgetItem(QString(i.get_name().c_str())));
-    }
+    inbox_view();
 }
 void TodolistDialog::open_TaskGroup_dialog(){
     TaskGroupDialog dialog(this);
@@ -146,11 +143,7 @@ void TodolistDialog::delete_selected_task(){
         if(reply == QMessageBox::Yes){
             this->datamanager->erase_an_element_from_tasks(selected_category);
             this->datamanager->load_Task_to_database();
-            //this->refresh_left_side();
-            ui->listWidget->clear();
-            for(auto i : this->datamanager->get_tasks()){
-               this->ui->listWidget->addItem(new QListWidgetItem(QString(i.get_name().c_str())));
-            }
+            inbox_view();
         }
 
 }
@@ -177,10 +170,11 @@ void TodolistDialog::today_view(){
             QListWidgetItem* single_task = new QListWidgetItem(QString(i.get_name().c_str()));
             single_task->setBackground(i.get_TaskGroup()->get_color());
             this->ui->listWidget->addItem(single_task);
-    }
+        }
     }
     ui->label->setText("Today");
 }
+
 void TodolistDialog::sevendays_view(){
     ui->listWidget->clear();
     ui->label->setText("Next 7 Days");
@@ -190,10 +184,11 @@ void TodolistDialog::sevendays_view(){
             QListWidgetItem* single_task = new QListWidgetItem(QString(i.get_name().c_str()));
             single_task->setBackground(i.get_TaskGroup()->get_color());
             this->ui->listWidget->addItem(single_task);
-    }
+        }
     }
 }
+
 void TodolistDialog::taskgroup_view(Task_Group group){
     ui->listWidget->clear();
-    //ui->label->setText(QString::fromStdString(group.get_name()));
+    ui->label->setText(QString::fromStdString(group.get_name()));
 }

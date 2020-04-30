@@ -12,7 +12,11 @@ class TodolistDialog : public QDialog
 {
     Q_OBJECT
 
+private:
+    Ui::TodolistDialog *ui;
+
 public:
+    DataAggregator *datamanager;
     explicit TodolistDialog(DataAggregator* dmanager, QWidget *parent = nullptr);
     ~TodolistDialog();
     void refresh_left_side();
@@ -26,10 +30,6 @@ public slots:
     void today_view();
     void sevendays_view();
     void taskgroup_view(Task_Group group);
-private:
-    Ui::TodolistDialog *ui;
-public:
-    DataAggregator *datamanager;
 };
 
 #endif // TODOLISTDIALOG_H

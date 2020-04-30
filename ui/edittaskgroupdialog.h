@@ -13,14 +13,16 @@ class EditTaskGroupDialog : public QDialog
 {
     Q_OBJECT
 
+private:
+    Ui::EditTaskGroupDialog *ui;
+    TodolistDialog *dialog;
+    void refresh();
+
 public:
     explicit EditTaskGroupDialog(TodolistDialog *dialog, QWidget *parent = nullptr);
     ~EditTaskGroupDialog();
     DataAggregator *datamanager;
-    Ui::EditTaskGroupDialog *ui;
-private:
-    TodolistDialog *dialog;
-    void refresh();
+
 public slots:
     void exec_TaskGroup_delete();
     void exec_TaskGroup_edit();

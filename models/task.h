@@ -16,10 +16,12 @@ private:
 public:
     Task();
     Task(const std::string&, std::shared_ptr<Task_Group>, const bool&, const QDate&);
+
     std::string get_name();
     std::shared_ptr<Task_Group> get_TaskGroup();
     bool is_deadline();
     QDate get_date();
+
     bool operator==(Task &task);
 };
 

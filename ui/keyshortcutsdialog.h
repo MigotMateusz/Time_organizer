@@ -11,12 +11,13 @@ class KeyShortcutsDialog : public QDialog
 {
     Q_OBJECT
 
+private:
+    Ui::KeyShortcutsDialog *ui;
+
 public:
     explicit KeyShortcutsDialog(QWidget *parent = nullptr);
     ~KeyShortcutsDialog();
 
-private:
-    Ui::KeyShortcutsDialog *ui;
 };
 
 #endif // KEYSHORTCUTSDIALOG_H

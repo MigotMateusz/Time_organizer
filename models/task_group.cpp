@@ -8,6 +8,7 @@ Task_Group::Task_Group(Task_Group* group){
     this->name_of_the_TaskGroup = group->get_name();
     this->color = group->get_color();
 }
+
 std::string Task_Group::get_name(){
     return this->name_of_the_TaskGroup;
 }
@@ -15,6 +16,7 @@ std::string Task_Group::get_name(){
 QColor Task_Group::get_color(){
     return this->color;
 }
+
 bool Task_Group::operator==(Task_Group &grouptask){
     return(this->name_of_the_TaskGroup == grouptask.get_name());
 }

@@ -12,16 +12,16 @@ class TaskGroupDialog : public QDialog
 {
     Q_OBJECT
 
-public:
-    explicit TaskGroupDialog(TodolistDialog *dialog, QWidget *parent = nullptr);
-    ~TaskGroupDialog();
-
 private:
     Ui::TaskGroupDialog *ui;
     QColor selected_color;
     QString selected_name;
     TodolistDialog *tododialog;
     DataAggregator *datamanager;
+
+public:
+    explicit TaskGroupDialog(TodolistDialog *dialog, QWidget *parent = nullptr);
+    ~TaskGroupDialog();
 
 public slots:
     void on_button_color_click();

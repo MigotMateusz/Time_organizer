@@ -1,8 +1,8 @@
-#include "mycalendardialog.h"
-#include "ui_mycalendardialog.h"
 #include <QColor>
 #include <functional>
 #include <QDebug>
+#include "mycalendardialog.h"
+#include "ui_mycalendardialog.h"
 #include "mycalendaradddialog.h"
 #include "../utilities/functions.h"
 

@@ -11,10 +11,12 @@ MyCalendar::MyCalendar(const MyCalendar &mycalendar){
     this->name_of_the_calendar = mycalendar.getName();
     this->color = mycalendar.getColor();
 }
+
 MyCalendar::MyCalendar(MyCalendar* cal){
     this->name_of_the_calendar = cal->getName();
     this->color = cal->getColor();
 }
+
 MyCalendar::~MyCalendar(){
 
 }
@@ -30,6 +32,7 @@ QColor MyCalendar::getColor() const{
 bool MyCalendar::operator==(MyCalendar &mycalendar){
     return(this->name_of_the_calendar == mycalendar.getName());
 }
+
 bool  MyCalendar::operator<(MyCalendar &mycalendar){
     return(this->name_of_the_calendar < mycalendar.name_of_the_calendar);
 }
