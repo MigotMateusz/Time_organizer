@@ -78,7 +78,6 @@ void TodolistDialog::refresh_left_side(){
         pixlabel->setContentsMargins(50,0,0,0);
         layout->addWidget(pixlabel);
         layout->addWidget(button);
-        connect(button, SIGNAL(released()), this, SLOT(taskgroup_view()));
     }
     QHBoxLayout *layout1 = new QHBoxLayout();
     ui->frameleft2->resize(300, h + 40);
